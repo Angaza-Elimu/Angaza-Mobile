@@ -1,19 +1,18 @@
 {
   "expo": {
-    "name": "dharura",
-    "slug": "dharura",
+    "name": "Angaza Elimu",
+    "slug": "angazaelimu",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "4.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -24,6 +23,11 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.angazaelimu.angaza",
+      "permissions": ["WIFI_STATE", "INTERNET", "WRITE_EXTERNAL_STORAGE","WRITE_SETTINGS", "READ_SETTINGS" ],
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
