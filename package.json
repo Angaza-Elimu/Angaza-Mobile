@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
+    "@nozbe/watermelondb": "^0.20.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-community/picker": "1.6.6",
     "@react-navigation/bottom-tabs": "^5.8.0",
@@ -30,7 +31,7 @@
     "expo-splash-screen": "~0.6.2",
     "expo-web-browser": "~8.5.0",
     "moment": "^2.27.0",
-    "offline-sync-react": "file:../react-offline-sync",
+    "offline-sync-react": "^1.0.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-loader-spinner": "^3.1.14",
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
+    "@babel/plugin-proposal-decorators": "^7.12.13",
     "babel-preset-expo": "^8.3.0",
     "jest-expo": "^39.0.0"
   },

@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { Platform, StyleSheet, View, AsyncStorage } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NetworkProvider } from 'offline-sync-react';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 import HomeScreen from './screens/HomeScreen';
 import Landing from './screens/Landing';
@@ -38,7 +39,7 @@ export default class App extends React.Component {
   getToken() {
     AsyncStorage.getItem('access_token').then(response => {
       if (response == '' || response == undefined || response == null) {
-        this.setState({initialPage:'Landing'})
+        this.setState({ initialPage: 'Landing' })
       } else {
         this.setState({ initialPage: 'Tab' })
       }
@@ -47,27 +48,28 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios'}
-        <NavigationContainer linking={LinkingConfiguration}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios'}
+          <NavigationContainer linking={LinkingConfiguration}>
 
-          <Stack.Navigator initialRouteName={this.state.initialPage}>
-            <Stack.Screen options={options} name="Landing" component={Landing} />
+            <Stack.Navigator initialRouteName={this.state.initialPage}>
+              <Stack.Screen options={options} name="Landing" component={Landing} />
 
-            <Stack.Screen options={options} name="Login" component={LoginScreen} />
+              <Stack.Screen options={options} name="Login" component={LoginScreen} />
 
-            <Stack.Screen options={options} name="Account" component={AccountType} />
+              <Stack.Screen options={options} name="Account" component={AccountType} />
 
-            <Stack.Screen options={options} name="Phone Confirm" component={PhoneConfirm} />
+              <Stack.Screen options={options} name="Phone Confirm" component={PhoneConfirm} />
 
-            <Stack.Screen options={options} name="Tab" component={BottomTab} />
+              <Stack.Screen options={options} name="Tab" component={BottomTab} />
 
-            <Stack.Screen options={options} name="One Time Pass" component={OneTimePassword} />
-          </Stack.Navigator>
+              <Stack.Screen options={options} name="One Time Pass" component={OneTimePassword} />
+            </Stack.Navigator>
 
 
-        </NavigationContainer>
-      </View>
+          </NavigationContainer>
+        </View>
+
     );
 
   }
