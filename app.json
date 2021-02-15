@@ -22,15 +22,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.angazaelimu.angaza"
     },
     "android": {
       "package": "com.angazaelimu.angaza",
-      "permissions": ["WIFI_STATE", "INTERNET", "WRITE_EXTERNAL_STORAGE","WRITE_SETTINGS", "READ_SETTINGS" ],
+      "permissions": [
+        "WIFI_STATE",
+        "INTERNET",
+        "WRITE_EXTERNAL_STORAGE",
+        "WRITE_SETTINGS",
+        "READ_SETTINGS"
+      ],
       "versionCode": 5
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }

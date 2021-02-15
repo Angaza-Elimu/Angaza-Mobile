@@ -81,7 +81,7 @@ class Subjects extends React.Component {
 
                                 navigate('Classes', {
                                     pageTo: this.state.pageTo,
-                                    subjectId: 1
+                                    subjectId: 2
                                 })
 
                             }}>
@@ -92,7 +92,7 @@ class Subjects extends React.Component {
                             <TouchableOpacity style={styles.card1} onPress={() => {
                                 navigate('Classes', {
                                     pageTo: this.state.pageTo,
-                                    subjectId: 2
+                                    subjectId: 1
                                 })
                             }}>
                                 <Text style={styles.subjectText}>

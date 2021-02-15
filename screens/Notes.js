@@ -8,6 +8,7 @@ import * as DataService from '../services/ContentRetrieval';
 import Loader from 'react-native-modal-loader';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { search } from 'expo-sqlite-query-helper';
 
 class Notes extends React.Component {
     constructor(props) {
@@ -25,6 +26,8 @@ class Notes extends React.Component {
     }
     componentDidMount() {
         this.getTopics();
+
+        console.log("Mounted")
     }
 
     
@@ -105,33 +108,66 @@ class Notes extends React.Component {
 
     getTopics() {
         //fetch or check local sqlite based on configvalue
-        this.setState({ loading: true })
-        DataService.retrieveTopics(this.state.class, this.state.subject_id).then(response => {
+        this.setState({ loading: true });
+        search (
+            'topics', {
+                class: this.state.class, 'subject_id': this.state.subject_id
+            }
+          ).then((rows) => {
+              console.log(JSON.stringify(rows.rows._array));
+            
+              this.setState({ topics: rows.rows._array});
+              this.setState({ loading: false });
+          });
+        // DataService.retrieveTopics(this.state.class, this.state.subject_id).then(response => {
 
-            this.setState({ topics: response });
-            this.setState({ loading: false });
-        })
+        //     this.setState({ topics: response });
+        //     this.setState({ loading: false });
+        // })
 
     }
     getSubtopics(topic_id) {
         //fetch or check db based on config value
         this.setState({ loading: true });
         console.log(topic_id);
-        DataService.retrieveSubtopics(topic_id).then(response => {
-            this.setState({ subtopics: response });
-            this.setState({ loading: false });
-        })
+        search (
+            'subtopics', {
+                topic_id: topic_id,
+                subject_id: this.state.subject_id
+            }
+          ).then((rows) => {
+            
+              this.setState({ subtopics: rows.rows._array});
+              this.setState({ loading: false });
+          });
+        // DataService.retrieveSubtopics(topic_id).then(response => {
+        //     this.setState({ subtopics: response.rows });
+        //     this.setState({ loading: false });
+        // })
     }
     getNotes(subtopic_id) {
         //fetch or check db based on config value
         this.setState({ loading: true });
-        DataService.retrieveNotes(subtopic_id).then(response => {
-            console.log(response);
-            // this.setState({notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + response[0].notes + `</body>`});
-            this.setState({ notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + response[0].notes + `</body>` })
-            console.log(this.state.notes);
-            this.setState({ loading: false });
-        })
+        search (
+            'notes',
+            {
+                subtopic_id: subtopic_id
+            }
+          ).then((rows) => {
+              console.log(rows);
+            
+            //   this.setState({ topics: rows.rows._array});
+
+              this.setState({ notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + rows.rows._array[0].notes + `</body>` })
+              this.setState({ loading: false });
+          });
+        // DataService.retrieveNotes(subtopic_id).then(response => {
+        //     console.log(response);
+        //     // this.setState({notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + response[0].notes + `</body>`});
+        //     this.setState({ notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + response[0].notes + `</body>` })
+        //     console.log(this.state.notes);
+        //     this.setState({ loading: false });
+        // });
     }
 }
 const styles = StyleSheet.create(
