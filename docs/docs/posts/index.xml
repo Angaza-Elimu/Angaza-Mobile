@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Angaza Application</title>
-    <link>http://example.org/posts/</link>
+    <link>https://angaza-elimu.github.io/Angaza-Mobile/posts/</link>
     <description></description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://angaza-elimu.github.io/Angaza-Mobile/posts/index.xml" rel="self" type="application/rss+xml" />
       <item>
         <title>Contribution Guidelines</title>
-        <link>http://example.org/posts/contribution-guidelines/</link>
+        <link>https://angaza-elimu.github.io/Angaza-Mobile/posts/contribution-guidelines/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://example.org/posts/contribution-guidelines/</guid>
+        <guid>https://angaza-elimu.github.io/Angaza-Mobile/posts/contribution-guidelines/</guid>
         <description>Contributing to this repository   Getting started  Before you begin:
  This site is powered by Node.js. Check to see if you&amp;rsquo;re on the version of node we support. Have you read the code of conduct? Check out the existing issues &amp;amp; see if we accept contributions for your type of issue.   Use the &amp;lsquo;make a contribution&amp;rsquo; button Navigating a new codebase can be challenging, so we&amp;rsquo;re making that a little easier.</description>
       </item>
     
       <item>
         <title>Introduction</title>
-        <link>http://example.org/posts/introduction/</link>
+        <link>https://angaza-elimu.github.io/Angaza-Mobile/posts/introduction/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://example.org/posts/introduction/</guid>
+        <guid>https://angaza-elimu.github.io/Angaza-Mobile/posts/introduction/</guid>
         <description>ANGAZA MOBILE APP The product is an application built in Expo-React-Native in order to provide an offline first approach to users with devices in areas with low connectivity.
 The below are instructions when it comes to running the application or extending our work in your local environment.
 This project was bootstrapped with Create React Native App.
@@ -30,10 +30,10 @@ Below you&amp;rsquo;ll find information about performing common tasks. The most 
     
       <item>
         <title>Syntax</title>
-        <link>http://example.org/posts/syntax/</link>
+        <link>https://angaza-elimu.github.io/Angaza-Mobile/posts/syntax/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://example.org/posts/syntax/</guid>
+        <guid>https://angaza-elimu.github.io/Angaza-Mobile/posts/syntax/</guid>
         <description>This explains the different components included in the Mobile application and the functions there in.
  All component code is written in the path /src/app folder
   All assets are stored in the path /src/assets folder
