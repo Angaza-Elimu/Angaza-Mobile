@@ -1,19 +1,19 @@
 import React from 'react';
 
 import { LinearGradient } from "expo-linear-gradient";
-import { View, StyleSheet, Text, TextInput, Image, TouchableHighlight } from 'react-native';
-import { Picker} from '@react-native-community/picker';
+import { View, StyleSheet, Text, TextInput, Image, Picker, TouchableHighlight, AsyncStorage } from 'react-native';
+// import { Picker } from '@react-native-community/picker';
 import { WebView } from 'react-native-webview';
 import * as DataService from '../services/ContentRetrieval';
 import Loader from 'react-native-modal-loader';
-import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { search } from 'expo-sqlite-query-helper';
+import { search, executeSql } from 'expo-sqlite-query-helper';
 
 class Notes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            netState: '',
             class: props.route.params.class,
             subject_id: props.route.params.subjectId,
             loading: false,
@@ -25,12 +25,16 @@ class Notes extends React.Component {
         };
     }
     componentDidMount() {
-        this.getTopics();
+        AsyncStorage.getItem('netState').then(response => {
+            this.setState({ netState: response });
+
+            this.getTopics();
+        });
 
         console.log("Mounted")
     }
 
-    
+
 
     render() {
         let selectedValue = "";
@@ -45,33 +49,18 @@ class Notes extends React.Component {
             >
                 <SafeAreaView style={styles.internalContainer}>
                     <Loader loading={this.state.loading} color="#235190" />
-                    <View style={styles.pageContainer}>
-                        <View style={styles.headingContainer}>
-                            <View style={styles.headingTextContainer}>
-                                <Text style={styles.headingText}>
-                                    Notes
-                                 </Text>
-
-                            </View>
-                            <View style={styles.profileContainer}>
-                                <Image source={profileImage} style={styles.profileImage} />
-
-                            </View>
-                        </View>
-
-                    </View>
                     <View style={styles.screenMain}>
                         <View style={styles.headerRow}>
                             <Picker
                                 selectedValue={this.state.selectedTopic}
                                 placeholder="Topics"
-                                style={{ margin: 20, width: 150 }}
+                                style={{ margin: 20, width: 300, }}
                                 onValueChange={(value) => {
 
                                     this.setState({ selectedTopic: value });
                                     this.getSubtopics(value)
                                 }}
-                            >
+                            ><Picker.Item label="Select Topic" value="0" key="1" />
                                 {this.state.topics.length > 0 ? this.state.topics.map((item, index) => {
                                     return (<Picker.Item label={item.topic_name} value={item.id} key={index} />)
                                 }) : <Picker.Item label="No topics loaded" value="0" key="1" />}
@@ -79,15 +68,14 @@ class Notes extends React.Component {
                             <Picker
                                 selectedValue={this.state.selectedsubTopic}
                                 placeholder="Subtopic"
-                                style={{ margin: 20, width: 150 }}
+                                style={{ margin: 20, width: 300 }}
                                 onValueChange={(value) => {
 
                                     this.setState({ selectedsubTopic: value });
                                     this.getNotes(value)
                                 }}
-                            >
-                                {this.state.subtopics.length > 0 ? 
-                                this.state.subtopics.map((item, index) => {
+                            ><Picker.Item label="Select Subtopic" value="0" key="1" />
+                                {this.state.subtopics.length > 0 ? this.state.subtopics.map((item, index) => {
                                     return (<Picker.Item label={item.subtopic_name} value={item.id} key={index} />)
                                 }) : <Picker.Item label="No topics loaded" value="0" key="1" />}
                             </Picker>
@@ -108,66 +96,84 @@ class Notes extends React.Component {
 
     getTopics() {
         //fetch or check local sqlite based on configvalue
+        console.log(this.state.netState);
         this.setState({ loading: true });
-        search (
-            'topics', {
-                class: this.state.class, 'subject_id': this.state.subject_id
-            }
-          ).then((rows) => {
-              console.log(JSON.stringify(rows.rows._array));
-            
-              this.setState({ topics: rows.rows._array});
-              this.setState({ loading: false });
-          });
-        // DataService.retrieveTopics(this.state.class, this.state.subject_id).then(response => {
+        if (this.state.netState == 'online') {
+            DataService.retrieveTopics(this.state.class, this.state.subject_id).then(response => {
 
-        //     this.setState({ topics: response });
-        //     this.setState({ loading: false });
-        // })
+                this.setState({ topics: response });
+                this.setState({ loading: false });
+            })
+        } else {
+            console.log(
+                {
+                    class: this.state.class, subject_id: this.state.subject_id
+                }
+            )
+            executeSql('SELECT * FROM topics WHERE class=' + this.state.class + ' AND subject_id=' + this.state.subject_id).then((rows) => {
+                // console.log(JSON.stringify(rows.rows._array));
+                console.log(rows);
+                this.setState({ topics: rows.rows._array });
+                this.setState({ loading: false });
+            });
 
+            // search(
+            //     'topics', {
+            //     class: this.state.class,
+            //     subject_id: this.state.subject_id
+            // }
+            // ).then((rows) => {
+            //     // console.log(JSON.stringify(rows.rows._array));
+            //     console.log(rows);
+            //     this.setState({ topics: rows.rows._array });
+            //     this.setState({ loading: false });
+            // });
+        }
     }
     getSubtopics(topic_id) {
         //fetch or check db based on config value
         this.setState({ loading: true });
         console.log(topic_id);
-        search (
-            'subtopics', {
-                topic_id: topic_id,
-                subject_id: this.state.subject_id
-            }
-          ).then((rows) => {
-            
-              this.setState({ subtopics: rows.rows._array});
-              this.setState({ loading: false });
-          });
-        // DataService.retrieveSubtopics(topic_id).then(response => {
-        //     this.setState({ subtopics: response.rows });
-        //     this.setState({ loading: false });
-        // })
+        if (this.state.netState == 'online') {
+            DataService.retrieveSubtopics(topic_id).then(response => {
+                this.setState({ subtopics: response.rows });
+                this.setState({ loading: false });
+            })
+        } else {
+            executeSql('SELECT * FROM subtopics WHERE topic_id=' + topic_id).then((rows) => {
+                console.log(rows);
+                this.setState({ subtopics: rows.rows._array });
+                this.setState({ loading: false });
+            });
+        }
+
+
     }
     getNotes(subtopic_id) {
         //fetch or check db based on config value
         this.setState({ loading: true });
-        search (
-            'notes',
-            {
-                subtopic_id: subtopic_id
-            }
-          ).then((rows) => {
-              console.log(rows);
-            
-            //   this.setState({ topics: rows.rows._array});
+        if (this.state.netState == 'online') {
+            DataService.retrieveNotes(subtopic_id).then(response => {
+                console.log(response);
+                this.setState({ notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + response[0].notes + `</body>` })
+                console.log(this.state.notes);
+                this.setState({ loading: false });
+            });
+        } else {
+            search(
+                'notes', {
+                    subtopic_id: subtopic_id
+                }
+            ).then((rows) => {
+                console.log(rows);
 
-              this.setState({ notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + rows.rows._array[0].notes + `</body>` })
-              this.setState({ loading: false });
-          });
-        // DataService.retrieveNotes(subtopic_id).then(response => {
-        //     console.log(response);
-        //     // this.setState({notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + response[0].notes + `</body>`});
-        //     this.setState({ notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + response[0].notes + `</body>` })
-        //     console.log(this.state.notes);
-        //     this.setState({ loading: false });
-        // });
+                this.setState({ topics: rows.rows._array });
+
+                this.setState({ notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + rows.rows._array[0].notes + `</body>` })
+                this.setState({ loading: false });
+            });
+            this.setState({ loading: false });
+        }
     }
 }
 const styles = StyleSheet.create(
@@ -176,10 +182,10 @@ const styles = StyleSheet.create(
             flexDirection: 'row'
         },
         headerRow: {
-            flexDirection: 'row',
+            flexDirection: 'column',
             height: '10%',
-            width: '100%',
-            alignItems: 'center'
+            width: '100%'
+
         },
         webViewDimensions: {
             width: 400,

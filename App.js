@@ -1,7 +1,7 @@
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { Platform, StyleSheet, View, AsyncStorage } from 'react-native';
+import { Platform, StyleSheet, View, AsyncStorage, ToastAndroid } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 import HomeScreen from './screens/HomeScreen';
@@ -14,6 +14,8 @@ import OneTimePassword from './screens/OneTimePassword';
 import Database, { createTable, insert, search, dropTable } from 'expo-sqlite-query-helper';
 import axios from 'axios';
 
+
+console.disableYellowBox = true;
 const Stack = createStackNavigator();
 
 const options = {
@@ -41,10 +43,14 @@ export default class App extends React.Component {
   createDB() {
     Database("angaza_data");
     console.log("Creating")
-    // dropTable("subtopics");
+    dropTable("subtopics");
 
-    // dropTable("notes");
-    // dropTable("topics");
+    dropTable("notes");
+    dropTable("topics");
+
+    //check if records exist
+
+
     createTable('subtopics', {
 
       "id": "INT",
@@ -55,65 +61,99 @@ export default class App extends React.Component {
       "created_at": "TEXT NULL",
       "updated_at": "TEXT NULL"
 
-    });
-    createTable('topics', {
-
+    }).then((status) => createTable('topics', {
       "id": "INT",
       "topic_name": "VARCHAR(100)",
       "subject_id": "INT",
       "class": "INT NULL",
       "created_at": "TEXT NULL",
       "updated_at": "TEXT NULL"
+    }))
+      .then((status) => createTable('notes', {
+        "id": "INT",
+        "subtopic_id": "INT",
+        "topic_id": "INT",
+        "notes": "TEXT",
+        "subject_id": "INT",
+        "class": "INT NULL",
+        "created_at": "TEXT NULL",
+        "updated_at": "TEXT NULL"
+      }))
+      .then((status) => {
+        console.log(status);
 
-    });
-    createTable('notes', {
+        // this.getNotes().then(response => {
 
-      "id": "INT",
-      "subtopic_id": "INT",
-      "topic_id": "INT",
-      "notes": "TEXT",
-      "subject_id": "INT",
-      "class": "INT NULL",
-      "created_at": "TEXT NULL",
-      "updated_at": "TEXT NULL"
+        // })
+        // insert('notes', response.notes)
+        //   .then(({ row, rowAffected, insertID, lastQuery }) => {
+        //     console.log(row);
+        //     console.log("success")
+        //   })
+        //   .catch((e) => console.log(e));
 
-    });
-    this.getNotes().then(response => {
-      console.log(response.topics);
-      var toString = Object.prototype.toString;
-      // console.log(toString.call(response.topics))
-      
-      const topics = response.topics;
-      insert('notes', response.notes)
-        .then(({ row, rowAffected, insertID, lastQuery }) => {
-          // console.log(row);
-          console.log("success")
+        search('topics').then(rows => {
+          console.log(rows.rows.length);
+          this.getNotes().then(response => {
+            insert('notes', response.notes)
+              .then(({ row, rowAffected, insertID, lastQuery }) => {
+             
+                search('notes').then(response => {
+
+                  console.log(response.rows.length);
+                })
+                // console.log(row);
+                // console.log("success")
+              })
+              .catch((e) => console.log(e));
+
+          })
+          if (rows.rows.length == 0) {
+            this.getNotes().then(response => {
+              // console.log(response.topics[0]);
+              var toString = Object.prototype.toString;
+              // console.log(toString.call(response.topics))
+
+              const topics = response.topics;
+
+              insert('notes', response.notes)
+                .then(({ row, rowAffected, insertID, lastQuery }) => {
+                  // console.log(row);
+                  // console.log("success")
+
+                  
+                })
+                .catch((e) => console.log(e));
+
+
+
+              insert('subtopics', response.subtopics)
+                .then(({ row, rowAffected, insertID, lastQuery }) => {
+                  console.log('success');
+                })
+                .catch((e) => console.log(e));
+
+              insert('topics', response.topics)
+                .then(({ row, rowAffected, insertID, lastQuery }) => {
+                  console.log('success');
+                })
+                .catch((e) => console.log(e));
+
+
+            });
+          } else {
+            ToastAndroid.showWithGravity('Local Content Database updated', ToastAndroid.SHORT, ToastAndroid.BOTTOM);
+          }
         })
-        .catch((e) => console.log(e));
-      search('topics').then(rows => {
-        console.log(rows);
+
       });
-    
-      insert('subtopics', response.subtopics)
-        .then(({ row, rowAffected, insertID, lastQuery }) => {
-          console.log('success');
-        })
-        .catch((e) => console.log(e));
 
-        insert('topics', response.topics)
-        .then(({ row, rowAffected, insertID, lastQuery }) => {
-          console.log('success');
-        })
-        .catch((e) => console.log(e));
-
-
-    });
 
   }
 
   async getNotes() {
     const access_token = await AsyncStorage.getItem('access_token');
-    const json = await axios.get('http://localhost:8000/api/fetchAll', {
+    const json = await axios.get('http://192.168.1.195:8000/api/fetchAll', {
     });
     return json.data;
   }

@@ -57,7 +57,7 @@ class Subjects extends React.Component {
 
                 <Loader loading={this.state.loading} color="#235190" />
                 <SafeAreaView style={styles.internalContainer}>
-                    <View style={styles.pageContainer}>
+                    {/* <View style={styles.pageContainer}>
                         <View style={styles.headingContainer}>
                             <Text style={styles.headingText}>
                                 Select
@@ -67,13 +67,10 @@ class Subjects extends React.Component {
                                 Subject
                             </Text>
 
-                            <View style={styles.profileContainer}>
-                                <Image source={profileImage} style={styles.profileImage} />
-
-                            </View>
+                           
                         </View>
 
-                    </View>
+                    </View> */}
                     {this.state.learning_system == 'primary' ? <ScrollView style={styles.screenMain}>
                         {/* <View style={styles.screenMain}> */}
                         <View style={styles.subjectRow}>
@@ -375,8 +372,9 @@ const styles = StyleSheet.create(
 
         },
         internalContainer: {
-            height: "100%",
-            width: '100%'
+            width: '100%',
+            flex: 1,
+            marginBottom: 40
         },
         viewHeadingContainer: {
             padding: 24,
@@ -481,8 +479,6 @@ const styles = StyleSheet.create(
         headingContainer: {
             width: '100%',
             marginTop: 10,
-            paddingTop: '10%',
-            paddingBottom: '10%',
             paddingLeft: '8%',
             flexDirection: 'row'
         },

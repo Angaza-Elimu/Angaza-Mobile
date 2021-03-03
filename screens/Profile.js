@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, TouchableHighlight, View, TextInput, AsyncStorage } from 'react-native';
+import { Image, StyleSheet, Text, Switch, TouchableHighlight, View, TextInput, AsyncStorage, ToastAndroid } from 'react-native';
 
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from '@react-navigation/native';
@@ -14,28 +14,70 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading:'',
+            isLoading: '',
             email: '',
             username: '',
-            phone: ''
+            phone: '',
+            netState: '',
+            isEnabled: false
         };
     }
 
-    componentWillMount(){
-        
+    componentWillMount() {
+        AsyncStorage.getItem('netState').then(resp => {
+            this.setState({ netState: resp })
+            console.log(resp);
+            if (resp = 'offline') {
+                this.setState({ isEnabled: true })
+            } else {
+
+                this.setState({ isEnabled: false })
+            }
+        })
         AsyncStorage.getItem('username').then(resp => {
-            this.setState({username: resp})
+            this.setState({ username: resp })
         })
         AsyncStorage.getItem('phone').then(resp => {
-            this.setState({phone: resp})
+            this.setState({ phone: resp })
         })
         AsyncStorage.getItem('email').then(resp => {
-            this.setState({email: resp})
+            this.setState({ email: resp })
         })
+
+    }
+
+    switchModes() {
+        if (this.state.netState == 'online') {
+            this.setState({ netState: 'offline', isEnabled: true });
+            AsyncStorage.setItem('netState', 'offline');
+        } else {
+            this.setState({ netState: 'online', isEnabled: false });
+            AsyncStorage.setItem('netState', 'online');
+        }
+    }
+    switchToOfflineMode() {
+        AsyncStorage.setItem('netState', 'offline');
+        ToastAndroid.showWithGravity("You have switched to the offline mode", ToastAndroid.LONG, ToastAndroid.BOTTOM);
+    }
+    switchToOnlineMode() {
+        AsyncStorage.setItem('netState', 'offline');
+    }
+    toggleSwitch() {
+        console.log(this.state.isEnabled);
+        if (this.state.isEnabled == true) {
+            console.log(this.state.netState);
+            AsyncStorage.setItem('netState', 'offline');
+            this.setState({ isEnabled: false });
+        } else {
+            console.log(this.state.netState);
+            AsyncStorage.setItem('netState', 'online');
+            this.setState({ isEnabled: true });
+        }
 
     }
     render() {
 
+        // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
         const profileImage = require("../assets/images/profile.png");
 
         const { navigate, replace } = this.props.navigation;
@@ -62,12 +104,32 @@ class Profile extends React.Component {
 
                     </View>
                     <View style={styles.screenMain}>
-                   
+
                         <View style={styles.planContainer}>
                             <Text style={styles.planText}>Basic Plan</Text>
                             <Text style={styles.subplanText}>Expiry Date:30/9/2020</Text>
                         </View>
+                        <View style={styles.modeContainer}>
 
+                            <Text style={styles.planText}>Offline Mode</Text>
+                            <Switch
+                                trackColor={{ false: "#767577", true: "#81b0ff" }}
+                                thumbColor={this.state.isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                                ios_backgroundColor="#3e3e3e"
+                                value={this.state.isEnabled}
+                                onValueChange={() => {
+                                    if (this.state.isEnabled == true) {
+                                        AsyncStorage.setItem('netState', 'offline');
+                                        this.setState({ isEnabled: false });
+                                        // ToastAndroid.showWithGravity("")
+                                    } else {
+                                        AsyncStorage.setItem('netState', 'online');
+                                        this.setState({ isEnabled: true });
+                                    }
+                                }}
+                            />
+
+                        </View>
                         <View style={styles.formContainer}>
                             <View style={styles.flexInput}>
 
@@ -137,7 +199,7 @@ class Profile extends React.Component {
                             </TouchableHighlight>
                         </View>
                     </View>
-                    
+
                 </SafeAreaView>
             </LinearGradient>
         )
@@ -199,6 +261,13 @@ const styles = StyleSheet.create(
             width: "90%",
             alignItems: "center",
             borderRadius: 14
+        },
+        modeContainer: {
+            padding: 30,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            margin: 10
         },
         buttonText: {
             color: '#fff'

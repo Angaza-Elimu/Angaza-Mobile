@@ -50,10 +50,9 @@ class Home extends React.Component {
                 style={styles.gradientContainer}
             >
                 <SafeAreaView style={styles.internalContainer}>
-                    <View style={styles.pageContainer}>
-                        {/* <View style={styles.headerMenu}>
-                            <Ionicons name="ios-menu" size={30} color="#fff" />
-                        </View> */}
+                    {/* <View style={styles.pageContainer}>
+                        
+                        
                         <View style={styles.headingContainer}>
                             <View style={styles.headingTextContainer}>
 
@@ -70,7 +69,7 @@ class Home extends React.Component {
                             </View>
                         </View>
 
-                    </View>
+                    </View> */}
                     <View style={styles.screenMain}>
 
 
@@ -320,7 +319,7 @@ const styles = StyleSheet.create(
         screenMain: {
             width: "100%",
             backgroundColor: '#fff',
-            height: "80%",
+            height: "100%",
             top: 40,
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20
