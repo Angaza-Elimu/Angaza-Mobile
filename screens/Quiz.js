@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { LinearGradient } from "expo-linear-gradient";
-import { View, StyleSheet, Text, Modal, Image, TouchableHighlight, Picker, Alert } from 'react-native';
+import { View, StyleSheet, Text, Modal, Image, TouchableHighlight, Picker, Alert, ToastAndroid } from 'react-native';
 import HTML from "react-native-render-html";
-import AutoHeightWebView from 'react-native-autoheight-webview'
+import AutoHeightWebView from 'react-native-autoheight-webview';
 
+import { search, executeSql } from 'expo-sqlite-query-helper';
 import Loader from 'react-native-modal-loader';
 import * as DataService from '../services/ContentRetrieval';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -29,27 +30,31 @@ class Quiz extends React.Component {
             current_index: 0,
             current_question: {
                 id: null,
-                question: null,
-                option_a: null,
-                option_a_explanation: null,
-                option_b: null,
-                option_b_explanation: null,
-                option_c: null,
-                option_c_explanation: null,
-                option_d: null,
-                option_d_explanation: null,
-                additional_notes: null,
-                answer: null
+                question: '',
+                option_a: '',
+                option_a_explanation: '',
+                option_b: null, 
+                option_b_explanation: '',
+                option_c: '',
+                option_c_explanation: '',
+                option_d: '',
+                option_d_explanation: '',
+                additional_notes: '',
+                answer: ''
             }
         };
     }
 
     getQuestions(value) {
-        // this.setState({loading:true})
+        this.setState({loading:true})
         DataService.retrieveQuiz(value).then(response => {
-            // console.log(response)
             console.log(response)
-            this.setState({ questions: response, current_question: response[this.state.current_index] })
+            // console.log(response)
+            this.setState({ questions: response, current_question: response[this.state.current_index], loading:false })
+        }, err => {
+            this.setState({loading: false});
+            ToastAndroid.showWithGravity("Network connection error", ToastAndroid.LONG, ToastAndroid.CENTER);
+            console.log(err);
         })
     }
     componentDidMount() {
@@ -132,7 +137,7 @@ class Quiz extends React.Component {
                     >
                         <View style={styles.centeredView}>
                             <View style={styles.modalView}>
-                                <HTML html={this.state.current_question.additional_notes} />
+                                {this.state.current_question.additional_notes !== undefined ? <HTML html={this.state.current_question.additional_notes} /> : <View></View>}
                                 <TouchableHighlight
                                     style={styles.buttonStyle}
                                     onPress={() => {
@@ -145,18 +150,7 @@ class Quiz extends React.Component {
                         </View>
                     </Modal>
                     <View style={styles.pageContainer}>
-                        <View style={styles.headingContainer}>
-                            <View style={styles.headingTextContainer}>
-                                <Text style={styles.headingText}>
-                                    Assignment
-                                 </Text>
-
-                            </View>
-                            <View style={styles.profileContainer}>
-                                <Image source={profileImage} style={styles.profileImage} />
-
-                            </View>
-                        </View>
+                        
 
                     </View>
 
@@ -310,22 +304,48 @@ class Quiz extends React.Component {
     }
     getTopics() {
         //fetch or check local sqlite based on configvalue
-        this.setState({ loading: true })
-        DataService.retrieveTopics(this.state.class, this.state.subject_id).then(response => {
-            console.log(response);
-            this.setState({ topics: response });
-            this.setState({ loading: false });
-        })
+        console.log(this.state.netState);
+        this.setState({ loading: true });
+        if (this.state.netState == 'online') {
+            DataService.retrieveTopics(this.state.class, this.state.subject_id).then(response => {
 
+                this.setState({ topics: response });
+                this.setState({ loading: false });
+            })
+        } else {
+            console.log(
+                {
+                    class: this.state.class, subject_id: this.state.subject_id
+                }
+            )
+            executeSql('SELECT * FROM topics WHERE class=' + this.state.class + ' AND subject_id=' + this.state.subject_id).then((rows) => {
+
+                console.log(rows);
+                this.setState({ topics: rows.rows._array });
+                this.setState({ loading: false });
+            });
+
+
+        }
     }
     getSubtopics(topic_id) {
         //fetch or check db based on config value
         this.setState({ loading: true });
         console.log(topic_id);
-        DataService.retrieveSubtopics(topic_id).then(response => {
-            this.setState({ subtopics: response });
-            this.setState({ loading: false });
-        })
+        if (this.state.netState == 'online') {
+            DataService.retrieveSubtopics(topic_id).then(response => {
+                this.setState({ subtopics: response.rows });
+                this.setState({ loading: false });
+            })
+        } else {
+            executeSql('SELECT * FROM subtopics WHERE topic_id=' + topic_id).then((rows) => {
+                console.log(rows);
+                this.setState({ subtopics: rows.rows._array });
+                this.setState({ loading: false });
+            });
+        }
+
+
     }
 }
 const styles = StyleSheet.create(

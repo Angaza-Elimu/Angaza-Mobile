@@ -37,8 +37,9 @@ export function retrieveClasses(learning_system) {
 export async function retrieveQuiz(subtopic_id){
 
     const access_token = await AsyncStorage.getItem('access_token');
-    const json = await axios.post('https://staging.angazaelimu.com/api/getQuizQuestions', {
-        subtopic_id: subtopic_id
+    const json = await axios.post('https://staging.angazaelimu.com/api/getQuiz', {
+        subtopic_id: subtopic_id,
+        type: 'quizq_questions'
     }, {
         headers: {
             "Authorization": "Bearer " + access_token

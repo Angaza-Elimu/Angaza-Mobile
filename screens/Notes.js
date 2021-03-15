@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { LinearGradient } from "expo-linear-gradient";
-import { View, StyleSheet, Text, TextInput, Image, Picker, TouchableHighlight, AsyncStorage } from 'react-native';
+import { View, StyleSheet, Text, TextInput, Image, Picker, TouchableHighlight, AsyncStorage, ToastAndroid } from 'react-native';
 // import { Picker } from '@react-native-community/picker';
 import { WebView } from 'react-native-webview';
 import * as DataService from '../services/ContentRetrieval';
@@ -57,7 +57,7 @@ class Notes extends React.Component {
                                 style={{ margin: 20, width: 300, }}
                                 onValueChange={(value) => {
 
-                                    this.setState({ selectedTopic: value });
+                                    this.setState({ selectedTopic: value, notes:null});
                                     this.getSubtopics(value)
                                 }}
                             ><Picker.Item label="Select Topic" value="0" key="1" />
@@ -111,23 +111,13 @@ class Notes extends React.Component {
                 }
             )
             executeSql('SELECT * FROM topics WHERE class=' + this.state.class + ' AND subject_id=' + this.state.subject_id).then((rows) => {
-                // console.log(JSON.stringify(rows.rows._array));
+
                 console.log(rows);
                 this.setState({ topics: rows.rows._array });
                 this.setState({ loading: false });
             });
 
-            // search(
-            //     'topics', {
-            //     class: this.state.class,
-            //     subject_id: this.state.subject_id
-            // }
-            // ).then((rows) => {
-            //     // console.log(JSON.stringify(rows.rows._array));
-            //     console.log(rows);
-            //     this.setState({ topics: rows.rows._array });
-            //     this.setState({ loading: false });
-            // });
+
         }
     }
     getSubtopics(topic_id) {
@@ -162,15 +152,16 @@ class Notes extends React.Component {
         } else {
             search(
                 'notes', {
-                    subtopic_id: subtopic_id
-                }
+                subtopic_id: subtopic_id
+            }
             ).then((rows) => {
                 console.log(rows);
-
-                this.setState({ topics: rows.rows._array });
-
-                this.setState({ notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + rows.rows._array[0].notes + `</body>` })
-                this.setState({ loading: false });
+                if (rows.rows._array.length > 1) {
+                    this.setState({ notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + rows.rows._array[0].notes + `</body>` })
+                    this.setState({ loading: false });
+                } else {
+                    ToastAndroid.showWithGravity("No notes available", ToastAndroid.LONG, ToastAndroid.BOTTOM);
+                }
             });
             this.setState({ loading: false });
         }

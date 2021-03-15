@@ -43,10 +43,10 @@ export default class App extends React.Component {
   createDB() {
     Database("angaza_data");
     console.log("Creating")
-    dropTable("subtopics");
+    // dropTable("subtopics");
 
-    dropTable("notes");
-    dropTable("topics");
+    // dropTable("notes");
+    // dropTable("topics");
 
     //check if records exist
 
@@ -153,7 +153,7 @@ export default class App extends React.Component {
 
   async getNotes() {
     const access_token = await AsyncStorage.getItem('access_token');
-    const json = await axios.get('http://192.168.1.195:8000/api/fetchAll', {
+    const json = await axios.get('https://staging.angazaelimu.com/api/fetchAll', {
     });
     return json.data;
   }
