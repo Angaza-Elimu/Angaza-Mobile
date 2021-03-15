@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="58269129-e4cd-4b51-9b03-fa9b908cf8b9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/EfokuErWoAIQ84V.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/call.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/car.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/chevron-right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/clipboard.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/crash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/gradient.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../assets/images/icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/icons-light-menu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/logout.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/maxresdefault.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/pain.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/person.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/persona.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/robot-dev.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/robot-prod.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/sec.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../assets/images/splash.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/takepicture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/images/vehicleadd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../screens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../screens/LoginScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../screens/PersonForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../screens/ProfilePage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../screens/SingleVisitorScreen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../screens/VehicleForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../screens/VisitorList.js" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1oD65rQ1kPf1cUWpr1mPzhGWkIM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="58269129-e4cd-4b51-9b03-fa9b908cf8b9" name="Default Changelist" comment="" />
+      <created>1612808633361</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612808633361</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
