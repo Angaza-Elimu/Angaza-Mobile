@@ -7,12 +7,15 @@ import LinkingConfiguration from './navigation/LinkingConfiguration';
 import HomeScreen from './screens/HomeScreen';
 import Landing from './screens/Landing';
 import LoginScreen from './screens/LoginScreen';
+
+import Loader from 'react-native-modal-loader';
 import AccountType from './screens/AccountType';
 import BottomTab from './screens/BottomTab';
 import PhoneConfirm from './screens/PhoneConfirm';
 import OneTimePassword from './screens/OneTimePassword';
 import Database, { createTable, insert, search, dropTable } from 'expo-sqlite-query-helper';
 import axios from 'axios';
+import PaymentScreen from './screens/Payments';
 
 
 console.disableYellowBox = true;
@@ -35,12 +38,13 @@ export default class App extends React.Component {
       initialPage: ''
     }
   }
+  
   componentWillMount() {
     this.getToken();
     this.createDB();
   }
 
-  createDB() {
+  async createDB() {
     Database("angaza_data");
     console.log("Creating")
     // dropTable("subtopics");
@@ -53,108 +57,124 @@ export default class App extends React.Component {
 
     createTable('subtopics', {
 
-      "id": "INT",
+      "id": "INT ",
       "topic_id": "INT",
       "subtopic_name": "VARCHAR(100)",
-      "subject_id": "INT",
+      "subject_id": "INT NULL",
       "class": "INT NULL",
       "created_at": "TEXT NULL",
       "updated_at": "TEXT NULL"
 
     }).then((status) => createTable('topics', {
       "id": "INT",
-      "topic_name": "VARCHAR(100)",
-      "subject_id": "INT",
+      "topic_name": "TEXT NULL",
+      "subject_id": "INT NULL",
       "class": "INT NULL",
       "created_at": "TEXT NULL",
-      "updated_at": "TEXT NULL"
+      "updated_at": "TEXT NULL",
+      "learning_system": "TEXT NULL"
     }))
       .then((status) => createTable('notes', {
         "id": "INT",
-        "subtopic_id": "INT",
-        "topic_id": "INT",
-        "notes": "TEXT",
-        "subject_id": "INT",
+        "subtopic_id": "INT NULL",
+        "topic_id": "INT NULL",
+        "notes": "TEXT NULL",
+        "subject_id": "INT NULL",
         "class": "INT NULL",
         "created_at": "TEXT NULL",
-        "updated_at": "TEXT NULL"
+        "updated_at": "TEXT NULL",
       }))
-      .then((status) => {
+      .then(async (status) => {
         console.log(status);
 
-        // this.getNotes().then(response => {
+        var topics = await search('topics');
 
-        // })
-        // insert('notes', response.notes)
-        //   .then(({ row, rowAffected, insertID, lastQuery }) => {
-        //     console.log(row);
-        //     console.log("success")
-        //   })
-        //   .catch((e) => console.log(e));
+        var notes = await search('notes');
 
-        search('topics').then(rows => {
-          console.log(rows.rows.length);
-          this.getNotes().then(response => {
-            insert('notes', response.notes)
-              .then(({ row, rowAffected, insertID, lastQuery }) => {
-             
-                search('notes').then(response => {
+        var subtopics = await search('subtopics');
+        console.log("Topoics are" + topics.rows.length);
 
-                  console.log(response.rows.length);
-                })
-                // console.log(row);
-                // console.log("success")
-              })
-              .catch((e) => console.log(e));
+        console.log("Topoics are" + notes.rows.length);
 
-          })
-          if (rows.rows.length == 0) {
-            this.getNotes().then(response => {
-              // console.log(response.topics[0]);
-              var toString = Object.prototype.toString;
-              // console.log(toString.call(response.topics))
+        console.log("Topoics are" + subtopics.rows.length);
+         if(topics.rows.length == 0){
+           var notes = await this.getNotes();
+           console.log(notes.topics[0]);
+           await insert('notes', notes.notes);
+           await insert('topics', notes.topics);
+           await insert('subtopics', notes.subtopics);
+         }
+          // this.getNotes().then(response => {
+          //   insert('notes', response.notes)
+          //     .then(({ row, rowAffected, insertID, lastQuery }) => {
 
-              const topics = response.topics;
+          //       search('notes').then(response => {
 
-              insert('notes', response.notes)
-                .then(({ row, rowAffected, insertID, lastQuery }) => {
-                  // console.log(row);
-                  // console.log("success")
+          //         console.log(response.rows.length);
+          //       })
+          //       // console.log(row);
+          //       // console.log("success")
+          //     })
+          //     .catch((e) => console.log(e));
 
-                  
-                })
-                .catch((e) => console.log(e));
+          // })
+          // if (rows.rows.length == 0) {
+          //   notes = await this.getNotes();
+            // this.getNotes().then(async response => {
+            //   // console.log(response.topics[0]);
+            //   var toString = Object.prototype.toString;
+            //   // console.log(toString.call(response.topics))
 
+            //   const topics = response.topics;
 
-
-              insert('subtopics', response.subtopics)
-                .then(({ row, rowAffected, insertID, lastQuery }) => {
-                  console.log('success');
-                })
-                .catch((e) => console.log(e));
-
-              insert('topics', response.topics)
-                .then(({ row, rowAffected, insertID, lastQuery }) => {
-                  console.log('success');
-                })
-                .catch((e) => console.log(e));
+            //   await insert('notes', response.notes)
+            //     .then(({ row, rowAffected, insertID, lastQuery }) => {
+            //       // console.log(row);
+            //       console.log("success")
+            //       // console.log(lastQuery);
 
 
-            });
-          } else {
-            ToastAndroid.showWithGravity('Local Content Database updated', ToastAndroid.SHORT, ToastAndroid.BOTTOM);
-          }
-        })
+            //     })
+            //     .then(result => {
+            //       insert('subtopics', response.subtopics)
+            //         .then(({ row, rowAffected, insertID, lastQuery }) => {
+            //           // console.log('success');
+            //           // console.log(lastQuery);
+            //         })
+            //     })
 
+
+
+
+            //     .catch((e) => console.log(e));
+
+            //   insert('topics', response.topics)
+            //     .then(({ row, rowAffected, insertID, lastQuery }) => {
+            //       // console.log('success');
+            //       // console.log(lastQuery);
+            //     })
+            //     .catch((e) => console.log(e));
+
+
+            // });
+          // } else {
+          //   ToastAndroid.showWithGravity('Local Content Database updated', ToastAndroid.SHORT, ToastAndroid.BOTTOM);
+          // }
+        
       });
 
 
   }
 
   async getNotes() {
+    this.setState({loading: true});
     const access_token = await AsyncStorage.getItem('access_token');
-    const json = await axios.get('https://staging.angazaelimu.com/api/fetchAll', {
+    const json = await axios.get('http://192.168.43.117:8000/api/fetchAll', {
+    }, err => {
+      console.log(error);
     });
+    // console.log(json);
+    this.setState({loading: false})
     return json.data;
   }
 
@@ -172,12 +192,16 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         {Platform.OS === 'ios'}
+
+        <Loader loading={this.state.loading} color="#235190" />
         <NavigationContainer linking={LinkingConfiguration}>
 
           <Stack.Navigator initialRouteName={this.state.initialPage}>
             <Stack.Screen options={options} name="Landing" component={Landing} />
 
             <Stack.Screen options={options} name="Login" component={LoginScreen} />
+
+            <Stack.Screen options={options} name="Payments" component={PaymentScreen} />
 
             <Stack.Screen options={options} name="Account" component={AccountType} />
 

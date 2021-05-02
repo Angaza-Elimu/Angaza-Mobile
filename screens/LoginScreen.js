@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { LinearGradient } from "expo-linear-gradient";
-import { View, StyleSheet, Text, TextInput, Image, Alert, TouchableHighlight, ToastAndroid, AsyncStorage } from 'react-native';
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, Alert, TouchableHighlight, ToastAndroid, AsyncStorage } from 'react-native';
 import axios from 'axios';
 import Loader from 'react-native-modal-loader';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,6 +17,7 @@ class LoginScreen extends React.Component {
     }
     render() {
 
+        const { navigate, replace, reset } = this.props.navigation;
         return (
             <LinearGradient
                 colors={["#2479AD", "#16ADA2", "#01FF90"]}
@@ -79,11 +80,25 @@ class LoginScreen extends React.Component {
 
 
                         </View>
+                        <TouchableOpacity onPress={()=> {
+                            this.navigateToRegister()
+                        }}>
+                            <Text style={styles.registerText}>Don't have an account yet? Register Here</Text>
+                        </TouchableOpacity>
+                       
                     </View>
                 </SafeAreaView>
             </LinearGradient>
         );
     }
+
+
+    navigateToRegister(){
+
+        const { navigate, replace, reset } = this.props.navigation;
+        replace('Account');
+    }   
+
     async loginRequest() {
         this.setState({ loading: true });
         const { navigate, replace, reset } = this.props.navigation;
@@ -98,7 +113,7 @@ class LoginScreen extends React.Component {
                 password: this.state.password
             }).then((resp) => {
 
-                this.setState({ loading:false });
+                this.setState({ loading: false });
                 let response = resp.data;
                 console.log(response);
                 if (response.access_token !== undefined) {
@@ -110,8 +125,13 @@ class LoginScreen extends React.Component {
                         AsyncStorage.setItem('learning_system', response.user.learning_system);
                         AsyncStorage.setItem('email', response.user.email);
                         AsyncStorage.setItem('phone', response.user.phone);
-                        console.log(response.user);
-                        replace('Tab');
+                        if (response.subscription.length < 1) {
+                            ToastAndroid.show('Kindly subscribe to a plan to proceed', ToastAndroid.LONG);
+                            replace('Payment')
+                        } else {  
+                            console.log(response.user);
+                            replace('Tab');
+                        }
                     } else {
                         console.log("Got Here")
                     }
@@ -148,6 +168,9 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%'
     },
+    registerText: {
+        color: '#fff'
+    },  
     headingText: {
         fontSize: 30,
         color: '#fff',

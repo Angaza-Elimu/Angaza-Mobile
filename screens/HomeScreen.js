@@ -8,6 +8,7 @@ import Classes from './Classes';
 import Notes from './Notes';
 
 import Quiz from './Quiz';
+import Assignment from './Assignment';
 
 
 
@@ -34,7 +35,7 @@ export default class HomeScreen extends React.Component {
 
         <Stack.Screen options={options} name="Quiz" component={Quiz}/>
 
-        <Stack.Screen options={options} name="Assignments" component={Quiz}/>
+        <Stack.Screen options={options} name="Assignments" component={Assignment}/>
 
         {/* <Stack.Screen options={options} name="Assignment" component={Notes}/> */}
       </Stack.Navigator>

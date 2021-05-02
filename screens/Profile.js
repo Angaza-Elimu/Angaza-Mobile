@@ -106,8 +106,24 @@ class Profile extends React.Component {
                     <View style={styles.screenMain}>
 
                         <View style={styles.planContainer}>
-                            <Text style={styles.planText}>Basic Plan</Text>
-                            <Text style={styles.subplanText}>Expiry Date:30/9/2020</Text>
+                            
+
+                                <Text style={styles.planText}>Basic Plan</Text>
+                                <Text style={styles.subplanText}>Expiry Date:30/9/2020</Text>
+                          
+                
+                        </View>
+                        <View style={styles.buttonContainer}>
+                            <TouchableHighlight style={styles.buttonStyle} onPress={() => {
+                                navigate('Payments')
+                            }
+
+                            }>
+                                <View style={styles.buttonWrap}>
+
+                                    <Text style={styles.buttonText}>Select Plan</Text>
+                                </View>
+                            </TouchableHighlight>
                         </View>
                         <View style={styles.modeContainer}>
 
@@ -158,32 +174,9 @@ class Profile extends React.Component {
                                 />
 
                             </View>
-                            {/* <View style={styles.flexInput}>
-
-                                <Ionicons name="md-mail" size={20} color="#2479AD" style={styles.formIcons} />
-                                <TextInput
-                                    style={styles.inputText}
-                                    placeholderTextColor="#2479AD"
-                                    autoCapitalize='none'
-                                    autoCorrect={false}
-                                    value={this.state.email}
-                                    onChangeText={(password) => { this.setState({ password }) }}
-                                />
-
-                            </View> */}
+                         
                         </View>
-                        {/* <View style={styles.buttonContainer}>
-                            <TouchableHighlight style={styles.buttonStyle} onPress={() => {
-                                replace('Tab')
-                            }
-
-                            }>
-                                <View style={styles.buttonWrap}>
-
-                                    <Text style={styles.buttonText}>Renew Subscription</Text>
-                                </View>
-                            </TouchableHighlight>
-                        </View> */}
+                       
 
                         <View style={styles.buttonContainer}>
                             <TouchableHighlight style={styles.buttonStyle} onPress={() => {
@@ -241,6 +234,8 @@ const styles = StyleSheet.create(
             width: '100%',
             margin: 30,
             paddingLeft: 30,
+            width: '100%',
+            alignContent: 'space-between'
         },
         buttonContainer: {
             justifyContent: "center",
@@ -252,6 +247,15 @@ const styles = StyleSheet.create(
             bottom: -5,
             marginLeft: 20,
             marginRight: 20
+        },
+        subscribeButton: {
+            backgroundColor: '#2479AD',
+            margin: 10,
+            paddingTop: 14,
+            paddingBottom: 14,
+            width: 80,
+            alignItems: "center",
+            borderRadius: 14
         },
         buttonStyle: {
             backgroundColor: '#2479AD',

@@ -34,29 +34,18 @@ export function retrieveClasses(learning_system) {
     });
 
 }
-export async function retrieveQuiz(subtopic_id){
+export async function retrieveQuiz(subtopic_id, type){
 
     const access_token = await AsyncStorage.getItem('access_token');
     const json = await axios.post('https://staging.angazaelimu.com/api/getQuiz', {
         subtopic_id: subtopic_id,
-        type: 'quizq_questions'
+        type: type
     }, {
         headers: {
             "Authorization": "Bearer " + access_token
         }
     });
     return json.data;
-    AsyncStorage.getItem('access_token').then(response => {
-        axios.post('https://staging.angazaelimu.com/api/getQuizQuestions', {
-            subtopic_id: subtopic_id
-        },{
-            headers: {
-                "Authorization": "Bearer " + response
-            }
-        }).then(response => {
-            return response["data"];
-        });
-    })
 }
 
 export async function answerQuestion(subject_id,subtopic_id, marked,answer,question_id,student_id,quiz_id ){
@@ -69,15 +58,17 @@ export async function answerQuestion(subject_id,subtopic_id, marked,answer,quest
         student_id:student_id,
         quiz_id: quiz_id
     }
+    console.log(data);
     AsyncStorage.getItem('access_token').then(response => {
-        axios.get('https://staging.angazaelimu.com/api/answerQuestion', {
+        axios.post('https://staging.angazaelimu.com/api/answerQuestion', data, {
             headers: {
                 "Authorization": "Bearer " + response
-            }
+            },
+            data
         }).then(response => {
             console.log(response["data"]);
             return response["data"];
-        });
+        })
     })
 }
 
@@ -134,4 +125,17 @@ export async function retrieveSubtopics(topic_id) {
     console.log(json.data);
     return json.data;
 
+}
+
+export async function subscribeToPlan(plan_id){
+    const access_token = await AsyncStorage.getItem('access_token');
+    const json = await axios.post('https://staging.angazaelimu.com/api/subscribeToPlan', {
+        plan_id: plan_id
+    }, {
+        headers: {
+            "Authorization": "Bearer " + access_token
+        }
+    });
+    console.log(json);
+    return json.data;
 }

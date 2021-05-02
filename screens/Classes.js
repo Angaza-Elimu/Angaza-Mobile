@@ -57,7 +57,8 @@ class Classes extends React.Component {
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                 navigate(this.state.pageTo, {
                                     subjectId: this.state.subjectId,
-                                    class: 1
+                                    class: 1,
+                                    page: this.state.pageTo
                                 })
                             }}>
                                 <Text style={styles.subjectText}>Grade 1</Text>
@@ -68,7 +69,8 @@ class Classes extends React.Component {
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                 navigate(this.state.pageTo, {
                                     subjectId: this.state.subjectId,
-                                    class: 2
+                                    class: 2,
+                                    page: this.state.pageTo
                                 })
                             }}>
                                 <Text style={styles.subjectText}>Grade 2</Text>
@@ -79,7 +81,8 @@ class Classes extends React.Component {
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                 navigate(this.state.pageTo, {
                                     subjectId: this.state.subjectId,
-                                    class: 3
+                                    class: 3,
+                                    page: this.state.pageTo
                                 })
                             }}>
                                 <Text style={styles.subjectText}>Grade 3</Text>
@@ -90,7 +93,8 @@ class Classes extends React.Component {
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                 navigate(this.state.pageTo, {
                                     subjectId: this.state.subjectId,
-                                    class: 4
+                                    class: 4,
+                                    page: this.state.pageTo
                                 })
                             }}>
                                 <Text style={styles.subjectText}>Grade 4</Text>
@@ -101,7 +105,8 @@ class Classes extends React.Component {
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                 navigate(this.state.pageTo, {
                                     subjectId: this.state.subjectId,
-                                    class: 5
+                                    class: 5,
+                                    page: this.state.pageTo
                                 })
                             }}>
                                 <Text style={styles.subjectText}>Class 5</Text>
@@ -112,7 +117,8 @@ class Classes extends React.Component {
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                 navigate(this.state.pageTo, {
                                     subjectId: this.state.subjectId,
-                                    class: 6
+                                    class: 6,
+                                    page: this.state.pageTo
                                 })
                             }}>
                                 <Text style={styles.subjectText}>Class 6</Text>
@@ -123,7 +129,8 @@ class Classes extends React.Component {
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                 navigate(this.state.pageTo, {
                                     subjectId: this.state.subjectId,
-                                    class: 7
+                                    class: 7,
+                                    page: this.state.pageTo
                                 })
                             }}>
                                 <Text style={styles.subjectText}>Class 7</Text>
@@ -134,7 +141,8 @@ class Classes extends React.Component {
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                 navigate(this.state.pageTo, {
                                     subjectId: this.state.subjectId,
-                                    class: 8
+                                    class: 8,
+                                    page: this.state.pageTo
                                 })
                             }}>
                                 <Text style={styles.subjectText}>Class 8</Text>
@@ -148,7 +156,8 @@ class Classes extends React.Component {
                                 <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                     navigate(this.state.pageTo, {
                                         subjectId: this.state.subjectId,
-                                        class: 9
+                                        class: 9,
+                                        page: this.state.pageTo
                                     })
                                 }}>
                                     <Text style={styles.subjectText}>Form 1</Text>
@@ -159,7 +168,8 @@ class Classes extends React.Component {
                                 <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                     navigate(this.state.pageTo, {
                                         subjectId: this.state.subjectId,
-                                        class: 10
+                                        class: 10,
+                                        page: this.state.pageTo
                                     })
                                 }}>
                                     <Text style={styles.subjectText}>Form 2</Text>
@@ -170,7 +180,8 @@ class Classes extends React.Component {
                                 <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                     navigate(this.state.pageTo, {
                                         subjectId: this.state.subjectId,
-                                        class: 11
+                                        class: 11,
+                                        page: this.state.pageTo
                                     })
                                 }}>
                                     <Text style={styles.subjectText}>Form 3</Text>
@@ -181,7 +192,8 @@ class Classes extends React.Component {
                                 <TouchableOpacity style={styles.touchableFit} onPress={() => {
                                     navigate(this.state.pageTo, {
                                         subjectId: this.state.subjectId,
-                                        class: 12
+                                        class: 12,
+                                        page: this.state.pageTo
                                     })
                                 }}>
                                     <Text style={styles.subjectText}>Form 4</Text>

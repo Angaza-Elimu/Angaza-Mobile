@@ -1,6 +1,9 @@
 ### ANGAZA MOBILE APP
 
-The product is an application built in Expo-React-Native in order to provide an offline first approach to users with devices in areas with low connectivity.
+This is a project done together with the Unicef innovation fund to create an offline first mobile application for students in areas in low connectivity.
+
+The aim of the application is to give access to resources such as notes, quizzes, assignments, revision materials, Teacher consulting and Classroom Discussions.
+Offline access works for the materials, which are updated over time.
 
 The below are instructions when it comes to running the application or extending our work in your local environment.
 

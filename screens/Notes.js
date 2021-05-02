@@ -155,8 +155,8 @@ class Notes extends React.Component {
                 subtopic_id: subtopic_id
             }
             ).then((rows) => {
-                console.log(rows);
-                if (rows.rows._array.length > 1) {
+                console.log(rows.rows.length);
+                if (rows.rows.length > 0) {
                     this.setState({ notes: `<meta name="viewport" content="width=device-width, initial-scale=1"> <body>` + rows.rows._array[0].notes + `</body>` })
                     this.setState({ loading: false });
                 } else {

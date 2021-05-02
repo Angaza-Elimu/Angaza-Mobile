@@ -373,7 +373,7 @@ const styles = StyleSheet.create(
         },
         internalContainer: {
             width: '100%',
-            flex: 1,
+            height: '100%',
             marginBottom: 40
         },
         viewHeadingContainer: {
