@@ -29,6 +29,7 @@ class Quiz extends React.Component {
             highlight_option: null,
             modalVisible: false,
             current_index: 0,
+            current_score: 0,
             current_question: {
             }
         };
@@ -56,14 +57,18 @@ class Quiz extends React.Component {
         if (this.state.question_answered == false) {
             if (this.state.current_question.answer == option_id) {
                 this.setState({ question_answered: true, highlight_option: option_id })
-                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 1, option_id, this.state.current_question.id).then(response => {
-                    this.setState({ question_answered: true })
+                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 1, option_id, this.state.current_question.id, 0, 'question_answers').then(response => {
+                    this.setState({ question_answered: true, current_score: this.state.current_score + 1});
+
+                    ToastAndroid.showWithGravity("Answer Correct", ToastAndroid.SHORT, ToastAndroid.TOP );
                     console.log(response);
                 })
             } else {
                 this.setState({ question_answered: true, highlight_option: option_id })
-                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 1, option_id, this.state.current_question.id).then(response => {
+                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 1, option_id, this.state.current_question.id, 0, 'question_answers').then(response => {
                     this.setState({ question_answered: true })
+
+                    ToastAndroid.showWithGravity("Answer Wrong", ToastAndroid.SHORT, ToastAndroid.TOP );
                     console.log(response);
                 })
             }
@@ -90,7 +95,7 @@ class Quiz extends React.Component {
             this.setState({ question_answered: false, highlight_option: null })
             this.setState({ current_index: this.state.current_index + 1, highlight_option: null, question_answered: false, current_question: this.state.questions[this.state.current_index + 1] })
         } else if (this.state.question_answered == true && this.state.current_index == this.state.questions.length - 1) {
-            Alert.alert("", "Questions Complete");
+            Alert.alert("", "Questions Complete. Score: " + this.state.current_score + "/" + this.state.questions.length);
             navigate('Home');
 
         } else {
@@ -113,7 +118,7 @@ class Quiz extends React.Component {
                             transparent={true}
                             visible={this.state.modalVisible}
                             onRequestClose={() => {
-                                Alert.alert("Modal has been closed.");
+                                // Alert.alert("Modal has been closed.");
                             }}
                         >
                             <View style={styles.centeredView}>

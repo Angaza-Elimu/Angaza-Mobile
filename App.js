@@ -104,62 +104,7 @@ export default class App extends React.Component {
            await insert('topics', notes.topics);
            await insert('subtopics', notes.subtopics);
          }
-          // this.getNotes().then(response => {
-          //   insert('notes', response.notes)
-          //     .then(({ row, rowAffected, insertID, lastQuery }) => {
-
-          //       search('notes').then(response => {
-
-          //         console.log(response.rows.length);
-          //       })
-          //       // console.log(row);
-          //       // console.log("success")
-          //     })
-          //     .catch((e) => console.log(e));
-
-          // })
-          // if (rows.rows.length == 0) {
-          //   notes = await this.getNotes();
-            // this.getNotes().then(async response => {
-            //   // console.log(response.topics[0]);
-            //   var toString = Object.prototype.toString;
-            //   // console.log(toString.call(response.topics))
-
-            //   const topics = response.topics;
-
-            //   await insert('notes', response.notes)
-            //     .then(({ row, rowAffected, insertID, lastQuery }) => {
-            //       // console.log(row);
-            //       console.log("success")
-            //       // console.log(lastQuery);
-
-
-            //     })
-            //     .then(result => {
-            //       insert('subtopics', response.subtopics)
-            //         .then(({ row, rowAffected, insertID, lastQuery }) => {
-            //           // console.log('success');
-            //           // console.log(lastQuery);
-            //         })
-            //     })
-
-
-
-
-            //     .catch((e) => console.log(e));
-
-            //   insert('topics', response.topics)
-            //     .then(({ row, rowAffected, insertID, lastQuery }) => {
-            //       // console.log('success');
-            //       // console.log(lastQuery);
-            //     })
-            //     .catch((e) => console.log(e));
-
-
-            // });
-          // } else {
-          //   ToastAndroid.showWithGravity('Local Content Database updated', ToastAndroid.SHORT, ToastAndroid.BOTTOM);
-          // }
+         
         
       });
 

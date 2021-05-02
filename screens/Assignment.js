@@ -50,16 +50,19 @@ class Assignment extends React.Component {
     answerQuestion(option_id) {
         if (this.state.question_answered == false) {
             if (this.state.current_question.answer == option_id) {
-                this.setState({ question_answered: true, highlight_option: option_id });
-                this.setState({correctly_answered: this.state.correctly_answered + 1});
-                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 1, option_id, this.state.current_question.id).then(response => {
+                
+                this.setState({ question_answered: true, highlight_option: option_id, correctly_answered: this.state.correctly_answered + 1});
+                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 1, option_id, this.state.current_question.id,0,'assignment_answers').then(response => {
                     this.setState({ question_answered: true })
                     console.log(response);
+                    ToastAndroid.showWithGravity("Answer Correct", ToastAndroid.SHORT, ToastAndroid.TOP );
                 })
             } else {
                 this.setState({ question_answered: true, highlight_option: option_id })
-                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 0, option_id, this.state.current_question.id).then(response => {
+                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 0, option_id, this.state.current_question.id,0,'assignment_answers').then(response => {
                     this.setState({ question_answered: true })
+
+                    ToastAndroid.showWithGravity("Answer Wrong", ToastAndroid.SHORT, ToastAndroid.TOP );
                     console.log(response);
                 })
             }

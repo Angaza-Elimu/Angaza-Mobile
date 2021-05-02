@@ -48,7 +48,7 @@ export async function retrieveQuiz(subtopic_id, type){
     return json.data;
 }
 
-export async function answerQuestion(subject_id,subtopic_id, marked,answer,question_id,student_id,quiz_id ){
+export async function answerQuestion(subject_id,subtopic_id, marked,answer,question_id,student_id,quiz_id,type){
     let data = {
         subject_id: subject_id,
         subtopic_id: subtopic_id,
@@ -56,7 +56,8 @@ export async function answerQuestion(subject_id,subtopic_id, marked,answer,quest
         answer: answer,
         question_id: question_id,
         student_id:student_id,
-        quiz_id: quiz_id
+        quiz_id: quiz_id,
+        type: type
     }
     console.log(data);
     AsyncStorage.getItem('access_token').then(response => {
