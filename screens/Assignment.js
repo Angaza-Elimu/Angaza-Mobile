@@ -16,6 +16,7 @@ class Assignment extends React.Component {
         super(props);
         this.state = {
             class: props.route.params.class,
+            user_id:0,
             subject_id: props.route.params.subjectId,
             questions: [],
             topics: [],
@@ -36,12 +37,14 @@ class Assignment extends React.Component {
 
     getQuestions(value) {
         this.setState({loading:true})
-        DataService.retrieveQuiz(value, 'assignments').then(response => {
+        return DataService.retrieveQuiz(value, 'assignments').then(response => {
             console.log(response);
-            this.setState({ questions: response, current_question: response[this.state.current_index], loading:false })
+            this.setState({ questions: response, current_question: response[this.state.current_index], loading:false });
+            return;
         })
     }
     componentDidMount() {
+    
         this.getTopics();
         console.log(this.state.class)
         console.log(this.state.subject_id)
@@ -52,14 +55,14 @@ class Assignment extends React.Component {
             if (this.state.current_question.answer == option_id) {
                 
                 this.setState({ question_answered: true, highlight_option: option_id, correctly_answered: this.state.correctly_answered + 1});
-                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 1, option_id, this.state.current_question.id,0,'assignment_answers').then(response => {
+                DataService.answerQuestion(this.state.subject_id, this.state.selectedsubTopic, 1, option_id, this.state.current_question.id,this.state.user_id, 0,'assignment_answers').then(response => {
                     this.setState({ question_answered: true })
                     console.log(response);
                     ToastAndroid.showWithGravity("Answer Correct", ToastAndroid.SHORT, ToastAndroid.TOP );
                 })
             } else {
                 this.setState({ question_answered: true, highlight_option: option_id })
-                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 0, option_id, this.state.current_question.id,0,'assignment_answers').then(response => {
+                DataService.answerQuestion(this.state.subject_id, this.state.selectedsubTopic, 0, option_id, this.state.current_question.id,this.state.user_id,0,'assignment_answers').then(response => {
                     this.setState({ question_answered: true })
 
                     ToastAndroid.showWithGravity("Answer Wrong", ToastAndroid.SHORT, ToastAndroid.TOP );
@@ -134,7 +137,7 @@ class Assignment extends React.Component {
                                 <TouchableHighlight
                                     style={styles.buttonStyle}
                                     onPress={() => {
-                                        this.setState({ modalVisible: false })
+                                        // this.setState({ modalVisible: false })
                                     }}
                                 >
                                     <Text style={styles.buttonText}>Close</Text>
@@ -181,12 +184,12 @@ class Assignment extends React.Component {
                             </View>
                         </View>
                         <ScrollView>
-                            {this.state.current_question.question !== null && this.state.questions.length > 0 ? <View style={styles.webViewContainer}>
+                            {this.state.questions.length > 0 ? <View style={styles.webViewContainer}>
                                 <View style={styles.questionContainer}>
                                     <HTML html={this.state.current_question.question} />
                                 </View>
                                 {this.state.highlight_option !== 1 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                    this.answerQuestion(1)
+                                    // this.answerQuestion(1)
                                 }}>
                                     <Text style={styles.optionChoice}>
                                         A.
@@ -194,7 +197,7 @@ class Assignment extends React.Component {
 
                                     <HTML html={this.state.current_question.option_a} />
                                 </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                    this.answerQuestion(1)
+                                    // this.answerQuestion(1)
                                 }}>
                                         <Text style={styles.optionChoice}>
                                             A.
@@ -203,7 +206,7 @@ class Assignment extends React.Component {
                                         <HTML html={this.state.current_question.option_a} />
                                     </TouchableOpacity>}
                                 {this.state.highlight_option !== 2 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                    this.answerQuestion(2)
+                                    // this.answerQuestion(2)
                                 }}>
                                     <Text style={styles.optionChoice}>
                                         B.
@@ -211,7 +214,7 @@ class Assignment extends React.Component {
 
                                     <HTML html={this.state.current_question.option_b} />
                                 </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                    this.answerQuestion(2)
+                                    // this.answerQuestion(2)
                                 }}>
                                         <Text style={styles.optionChoice}>
                                             B.
@@ -220,7 +223,7 @@ class Assignment extends React.Component {
                                         <HTML html={this.state.current_question.option_b} />
                                     </TouchableOpacity>}
                                 {this.state.highlight_option !== 3 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                    this.answerQuestion(3)
+                                    // this.answerQuestion(3)
                                 }}>
                                     <Text style={styles.optionChoice}>
                                         C.
@@ -228,7 +231,7 @@ class Assignment extends React.Component {
 
                                     <HTML html={this.state.current_question.option_c} />
                                 </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                    this.answerQuestion(3)
+                                    // this.answerQuestion(3)
                                 }}>
                                         <Text style={styles.optionChoice}>
                                             C.
@@ -237,7 +240,7 @@ class Assignment extends React.Component {
                                         <HTML html={this.state.current_question.option_c} />
                                     </TouchableOpacity>}
                                 {this.state.highlight_option !== 4 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                    this.answerQuestion(4)
+                                    // this.answerQuestion(4)
                                 }}>
                                     <Text style={styles.optionChoice}>
                                         D.

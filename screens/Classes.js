@@ -17,10 +17,10 @@ class Classes extends React.Component {
 
         this.getLearningLevel();
     }
-    getLearningLevel() {
-        AsyncStorage.getItem('learning_system').then(response => {
-            this.setState({ learning_level: response })
-        })
+    async getLearningLevel() {
+        let learning_level = AsyncStorage.getItem('learning_system');
+        console.log(this.state.pageTo);
+        this.setState({learning_level:learning_level});
     }
     render() {
 
@@ -54,24 +54,24 @@ class Classes extends React.Component {
 
                         <LinearGradient colors={["#2479AD", "#01FF90"]}
                             start={[0.5, 0.3]} style={styles.card1}>
-                            <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                navigate(this.state.pageTo, {
-                                    subjectId: this.state.subjectId,
-                                    class: 1,
-                                    page: this.state.pageTo
-                                })
+                            <TouchableOpacity testID="test-foo1" style={styles.touchableFit}   onPress={() => {
+                                // navigate(this.state.pageTo, {
+                                //     subjectId: this.state.subjectId,
+                                //     class: 1,
+                                //     page: this.state.pageTo
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>Grade 1</Text>
                             </TouchableOpacity>
                         </LinearGradient>
                         <LinearGradient colors={["#2479AD", "#01FF90"]}
                             start={[0.5, 0.3]} style={styles.card1}>
-                            <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                navigate(this.state.pageTo, {
-                                    subjectId: this.state.subjectId,
-                                    class: 2,
-                                    page: this.state.pageTo
-                                })
+                            <TouchableOpacity style={styles.touchableFit} testID="test-foo2" onPress={() => {
+                                // navigate(this.state.pageTo, {
+                                //     subjectId: this.state.subjectId,
+                                //     class: 2,
+                                //     page: this.state.pageTo
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>Grade 2</Text>
                             </TouchableOpacity>
@@ -79,11 +79,11 @@ class Classes extends React.Component {
                         <LinearGradient colors={["#2479AD", "#01FF90"]}
                             start={[0.5, 0.3]} style={styles.card1}>
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                navigate(this.state.pageTo, {
-                                    subjectId: this.state.subjectId,
-                                    class: 3,
-                                    page: this.state.pageTo
-                                })
+                                // navigate(this.state.pageTo, {
+                                //     subjectId: this.state.subjectId,
+                                //     class: 3,
+                                //     page: this.state.pageTo
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>Grade 3</Text>
                             </TouchableOpacity>
@@ -91,11 +91,11 @@ class Classes extends React.Component {
                         <LinearGradient colors={["#2479AD", "#01FF90"]}
                             start={[0.5, 0.3]} style={styles.card1}>
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                navigate(this.state.pageTo, {
-                                    subjectId: this.state.subjectId,
-                                    class: 4,
-                                    page: this.state.pageTo
-                                })
+                                // navigate(this.state.pageTo, {
+                                //     subjectId: this.state.subjectId,
+                                //     class: 4,
+                                //     page: this.state.pageTo
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>Grade 4</Text>
                             </TouchableOpacity>
@@ -103,11 +103,11 @@ class Classes extends React.Component {
                         <LinearGradient colors={["#2479AD", "#01FF90"]}
                             start={[0.5, 0.3]} style={styles.card1}>
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                navigate(this.state.pageTo, {
-                                    subjectId: this.state.subjectId,
-                                    class: 5,
-                                    page: this.state.pageTo
-                                })
+                                // navigate(this.state.pageTo, {
+                                //     subjectId: this.state.subjectId,
+                                //     class: 5,
+                                //     page: this.state.pageTo
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>Class 5</Text>
                             </TouchableOpacity>
@@ -115,11 +115,11 @@ class Classes extends React.Component {
                         <LinearGradient colors={["#2479AD", "#01FF90"]}
                             start={[0.5, 0.3]} style={styles.card1}>
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                navigate(this.state.pageTo, {
-                                    subjectId: this.state.subjectId,
-                                    class: 6,
-                                    page: this.state.pageTo
-                                })
+                                // navigate(this.state.pageTo, {
+                                //     subjectId: this.state.subjectId,
+                                //     class: 6,
+                                //     page: this.state.pageTo
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>Class 6</Text>
                             </TouchableOpacity>
@@ -127,11 +127,11 @@ class Classes extends React.Component {
                         <LinearGradient colors={["#2479AD", "#01FF90"]}
                             start={[0.5, 0.3]} style={styles.card1}>
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                navigate(this.state.pageTo, {
-                                    subjectId: this.state.subjectId,
-                                    class: 7,
-                                    page: this.state.pageTo
-                                })
+                                // navigate(this.state.pageTo, {
+                                //     subjectId: this.state.subjectId,
+                                //     class: 7,
+                                //     page: this.state.pageTo
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>Class 7</Text>
                             </TouchableOpacity>
@@ -139,11 +139,11 @@ class Classes extends React.Component {
                         <LinearGradient colors={["#2479AD", "#01FF90"]}
                             start={[0.5, 0.3]} style={styles.card1}>
                             <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                navigate(this.state.pageTo, {
-                                    subjectId: this.state.subjectId,
-                                    class: 8,
-                                    page: this.state.pageTo
-                                })
+                                // navigate(this.state.pageTo, {
+                                //     subjectId: this.state.subjectId,
+                                //     class: 8,
+                                //     page: this.state.pageTo
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>Class 8</Text>
                             </TouchableOpacity>
@@ -154,11 +154,11 @@ class Classes extends React.Component {
                             <LinearGradient colors={["#2479AD", "#01FF90"]}
                                 start={[0.5, 0.3]} style={styles.card1}>
                                 <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                    navigate(this.state.pageTo, {
-                                        subjectId: this.state.subjectId,
-                                        class: 9,
-                                        page: this.state.pageTo
-                                    })
+                                    // navigate(this.state.pageTo, {
+                                    //     subjectId: this.state.subjectId,
+                                    //     class: 9,
+                                    //     page: this.state.pageTo
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>Form 1</Text>
                                 </TouchableOpacity>
@@ -166,11 +166,11 @@ class Classes extends React.Component {
                             <LinearGradient colors={["#2479AD", "#01FF90"]}
                                 start={[0.5, 0.3]} style={styles.card1}>
                                 <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                    navigate(this.state.pageTo, {
-                                        subjectId: this.state.subjectId,
-                                        class: 10,
-                                        page: this.state.pageTo
-                                    })
+                                    // navigate(this.state.pageTo, {
+                                    //     subjectId: this.state.subjectId,
+                                    //     class: 10,
+                                    //     page: this.state.pageTo
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>Form 2</Text>
                                 </TouchableOpacity>
@@ -178,11 +178,11 @@ class Classes extends React.Component {
                             <LinearGradient colors={["#2479AD", "#01FF90"]}
                                 start={[0.5, 0.3]} style={styles.card1}>
                                 <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                    navigate(this.state.pageTo, {
-                                        subjectId: this.state.subjectId,
-                                        class: 11,
-                                        page: this.state.pageTo
-                                    })
+                                    // navigate(this.state.pageTo, {
+                                    //     subjectId: this.state.subjectId,
+                                    //     class: 11,
+                                    //     page: this.state.pageTo
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>Form 3</Text>
                                 </TouchableOpacity>
@@ -190,11 +190,11 @@ class Classes extends React.Component {
                             <LinearGradient colors={["#2479AD", "#01FF90"]}
                                 start={[0.5, 0.3]} style={styles.card1}>
                                 <TouchableOpacity style={styles.touchableFit} onPress={() => {
-                                    navigate(this.state.pageTo, {
-                                        subjectId: this.state.subjectId,
-                                        class: 12,
-                                        page: this.state.pageTo
-                                    })
+                                    // navigate(this.state.pageTo, {
+                                    //     subjectId: this.state.subjectId,
+                                    //     class: 12,
+                                    //     page: this.state.pageTo
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>Form 4</Text>
                                 </TouchableOpacity>

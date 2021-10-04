@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { LinearGradient } from "expo-linear-gradient";
-import { View, StyleSheet, Text, Modal, Image, TouchableHighlight, Picker, Alert, ToastAndroid } from 'react-native';
+import { View, StyleSheet, Text, Modal, Image, TouchableHighlight, Picker, Alert, ToastAndroid, AsyncStorage } from 'react-native';
 import HTML from "react-native-render-html";
 import AutoHeightWebView from 'react-native-autoheight-webview';
 
@@ -19,9 +19,10 @@ class Quiz extends React.Component {
             class: props.route.params.class,
             subject_id: props.route.params.subjectId,
             questions: [],
+            user_id: 0,
             topics: [],
             subtopics: [],
-            loading: null,
+            loading: false,
             answer: null,
             checkAnswer: false,
             selectedTopic: null,
@@ -48,6 +49,9 @@ class Quiz extends React.Component {
         })
     }
     componentDidMount() {
+        AsyncStorage.getItem('user_id').then(response => {
+            this.setState({user_id: response})
+        })
         this.getTopics();
         console.log(this.state.class)
         console.log(this.state.subject_id)
@@ -57,17 +61,15 @@ class Quiz extends React.Component {
         if (this.state.question_answered == false) {
             if (this.state.current_question.answer == option_id) {
                 this.setState({ question_answered: true, highlight_option: option_id })
-                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 1, option_id, this.state.current_question.id, 0, 'question_answers').then(response => {
+                DataService.answerQuestion(this.state.subject_id, this.state.selectedsubTopic, 1, option_id, this.state.current_question.id,this.state.user_id, 0, 'question_answers').then(response => {
                     this.setState({ question_answered: true, current_score: this.state.current_score + 1});
-
                     ToastAndroid.showWithGravity("Answer Correct", ToastAndroid.SHORT, ToastAndroid.TOP );
                     console.log(response);
                 })
             } else {
                 this.setState({ question_answered: true, highlight_option: option_id })
-                DataService.answerQuestion(this.state.subject_id, this.state.subtopic_id, 1, option_id, this.state.current_question.id, 0, 'question_answers').then(response => {
+                DataService.answerQuestion(this.state.subject_id, this.state.selectedsubTopic, 1, option_id, this.state.current_question.id,this.state.user_id, 0, 'question_answers').then(response => {
                     this.setState({ question_answered: true })
-
                     ToastAndroid.showWithGravity("Answer Wrong", ToastAndroid.SHORT, ToastAndroid.TOP );
                     console.log(response);
                 })
@@ -127,7 +129,7 @@ class Quiz extends React.Component {
                                     <TouchableHighlight
                                         style={styles.buttonStyle}
                                         onPress={() => {
-                                            this.setState({ modalVisible: false })
+                                            // this.setState({ modalVisible: false })
                                         }}
                                     >
                                         <Text style={styles.buttonText}>Close</Text>
@@ -174,12 +176,12 @@ class Quiz extends React.Component {
                                 </View>
                             </View>
                             <ScrollView>
-                                {this.state.current_question.question !== null && this.state.questions.length > 0 ? <View style={styles.webViewContainer}>
+                                {this.state.questions.length > 0 ? <View style={styles.webViewContainer}>
                                     <View style={styles.questionContainer}>
                                         <HTML html={this.state.current_question.question} />
                                     </View>
                                     {this.state.highlight_option !== 1 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                        this.answerQuestion(1)
+                                        // this.answerQuestion(1)
                                     }}>
                                         <Text style={styles.optionChoice}>
                                             A.
@@ -187,7 +189,7 @@ class Quiz extends React.Component {
 
                                         <HTML html={this.state.current_question.option_a} />
                                     </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                        this.answerQuestion(1)
+                                        // this.answerQuestion(1)
                                     }}>
                                             <Text style={styles.optionChoice}>
                                                 A.
@@ -196,7 +198,7 @@ class Quiz extends React.Component {
                                             <HTML html={this.state.current_question.option_a} />
                                         </TouchableOpacity>}
                                     {this.state.highlight_option !== 2 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                        this.answerQuestion(2)
+                                        // this.answerQuestion(2)
                                     }}>
                                         <Text style={styles.optionChoice}>
                                             B.
@@ -204,7 +206,7 @@ class Quiz extends React.Component {
 
                                         <HTML html={this.state.current_question.option_b} />
                                     </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                        this.answerQuestion(2)
+                                        // this.answerQuestion(2)
                                     }}>
                                             <Text style={styles.optionChoice}>
                                                 B.
@@ -213,7 +215,7 @@ class Quiz extends React.Component {
                                             <HTML html={this.state.current_question.option_b} />
                                         </TouchableOpacity>}
                                     {this.state.highlight_option !== 3 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                        this.answerQuestion(3)
+                                        // this.answerQuestion(3)
                                     }}>
                                         <Text style={styles.optionChoice}>
                                             C.
@@ -221,7 +223,7 @@ class Quiz extends React.Component {
 
                                         <HTML html={this.state.current_question.option_c} />
                                     </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                        this.answerQuestion(3)
+                                        // this.answerQuestion(3)
                                     }}>
                                             <Text style={styles.optionChoice}>
                                                 C.
@@ -230,7 +232,7 @@ class Quiz extends React.Component {
                                             <HTML html={this.state.current_question.option_c} />
                                         </TouchableOpacity>}
                                     {this.state.highlight_option !== 4 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                        this.answerQuestion(4)
+                                        // this.answerQuestion(4)
                                     }}>
                                         <Text style={styles.optionChoice}>
                                             D.
@@ -238,7 +240,7 @@ class Quiz extends React.Component {
 
                                         <HTML html={this.state.current_question.option_d} />
                                     </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                        this.answerQuestion(4)
+                                        // this.answerQuestion(4)
                                     }}>
                                             <Text style={styles.optionChoice}>
                                                 D.
@@ -249,7 +251,7 @@ class Quiz extends React.Component {
                                     <View style={styles.bottomContainer}>
                                         <View style={styles.buttonContainer}>
                                             <TouchableHighlight style={styles.buttonStyle} onPress={() => {
-                                                this.checkAnswer();
+                                                // this.checkAnswer();
                                             }
 
                                             }>
@@ -262,7 +264,7 @@ class Quiz extends React.Component {
 
                                         <View style={styles.buttonContainer}>
                                             <TouchableHighlight style={styles.buttonStyle} onPress={() => {
-                                                this.nextQuestion();
+                                                // this.nextQuestion();
                                             }
 
                                             }>

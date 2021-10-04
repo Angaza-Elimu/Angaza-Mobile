@@ -98,7 +98,10 @@ class LoginScreen extends React.Component {
         const { navigate, replace, reset } = this.props.navigation;
         replace('Account');
     }   
-
+    // async loginRequest(){
+    //     const { navigate, replace, reset } = this.props.navigation;
+    //     navigate('Tab', {screen: 'Home'});
+    // }
     async loginRequest() {
         this.setState({ loading: true });
         const { navigate, replace, reset } = this.props.navigation;
@@ -111,7 +114,7 @@ class LoginScreen extends React.Component {
             axios.post('https://staging.angazaelimu.com/api/auth/login', {
                 username: this.state.username,
                 password: this.state.password
-            }).then((resp) => {
+            }).then(async (resp) => {
 
                 this.setState({ loading: false });
                 let response = resp.data;
@@ -119,18 +122,19 @@ class LoginScreen extends React.Component {
                 if (response.access_token !== undefined) {
                     if (response.user_type !== 'student') {
 
-                        AsyncStorage.setItem('access_token', response.access_token);
-                        AsyncStorage.setItem('username', response.user.username);
-                        AsyncStorage.setItem('class', response.user.class);
-                        AsyncStorage.setItem('learning_system', response.user.learning_system);
-                        AsyncStorage.setItem('email', response.user.email);
-                        AsyncStorage.setItem('phone', response.user.phone);
+                        await AsyncStorage.setItem('access_token', response.access_token);
+                        await AsyncStorage.setItem('username', response.user.username);
+                        await AsyncStorage.setItem('class', response.user.class);
+                        await AsyncStorage.setItem('user_id', response.user.id.toString());
+                        await AsyncStorage.setItem('learning_system', response.user.learning_system);
+                        await AsyncStorage.setItem('email', response.user.email);
+                        await AsyncStorage.setItem('phone', response.user.phone);
                         if (response.subscription.length < 1) {
                             ToastAndroid.show('Kindly subscribe to a plan to proceed', ToastAndroid.LONG);
                             replace('Payment')
                         } else {  
                             console.log(response.user);
-                            replace('Tab');
+                            navigate('Tab', {screen: 'Home'});
                         }
                     } else {
                         console.log("Got Here")
@@ -144,7 +148,7 @@ class LoginScreen extends React.Component {
             }, err => {
 
                 this.setState({ loading: false });
-                console.log(err.response.status);
+                console.log(err);
                 if (err.response.status == 401) {
                     Alert.alert("Invalid Credentials", "Wrong Username and/or password");
                 } else {

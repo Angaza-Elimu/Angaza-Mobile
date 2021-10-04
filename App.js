@@ -114,10 +114,10 @@ export default class App extends React.Component {
   async getNotes() {
     this.setState({loading: true});
     const access_token = await AsyncStorage.getItem('access_token');
-    const json = await axios.get('http://192.168.43.117:8000/api/fetchAll', {
-    }, err => {
-      console.log(error);
-    });
+    // const json = await axios.get('http://staging.angazaelimu.com/api/fetchAll', {
+    // }, err => {
+    //   console.log(error);
+    // });
     // console.log(json);
     this.setState({loading: false})
     return json.data;
@@ -154,7 +154,9 @@ export default class App extends React.Component {
 
             <Stack.Screen options={options} name="Tab" component={BottomTab} />
 
-            <Stack.Screen options={options} name="One Time Pass" component={OneTimePassword} />
+            <Stack.Screen options={options} name="Pass" component={OneTimePassword} />
+
+            
           </Stack.Navigator>
 
 
@@ -169,11 +171,7 @@ export default class App extends React.Component {
 
 
 }
-function drawerNavigate() {
-  return <Drawer.Navigator initialRouterName="Login">
-    <Drawer.Screen name="Home" component={HomeScreen} />
-  </Drawer.Navigator>
-}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

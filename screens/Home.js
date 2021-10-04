@@ -19,22 +19,22 @@ class Home extends React.Component {
     componentWillMount() {
 
         const { navigate, replace } = this.props.navigation;
-        AsyncStorage.getItem('username').then(response => {
-            console.log(response);
-            if (response == '' || response == undefined || response == null) {
+        // AsyncStorage.getItem('username').then(response => {
+        //     console.log(response);
+        //     if (response == '' || response == undefined || response == null) {
 
-                replace('Login');
-                Alert.alert("You are not logged in",
-                    "Your session has expired")
-            } else {
-                console.log("state set")
-                this.setState({ username: response })
-            }
-        })
+        //         replace('Login');
+        //         Alert.alert("You are not logged in",
+        //             "Your session has expired")
+        //     } else {
+        //         console.log("state set")
+        //         this.setState({ username: response })
+        //     }
+        // })
     }
     render() {
-        console.log("notes opened");
-        const profileImage = require("../assets/images/profile.png");
+        // console.log("notes opened");
+        // const profileImage = require("../assets/images/profile.png");
         const reviseImage = require("../assets/images/revise.png");
 
         const chatImage = require("../assets/images/chat.png");
@@ -78,16 +78,14 @@ class Home extends React.Component {
                         </View>
                         <View style={styles.serviceContainer}>
                             <View style={styles.firstRow}>
-                                <TouchableOpacity>
-
-                                </TouchableOpacity>
+                                
                                 <LinearGradient
                                     colors={["#2479AD", "#16ADA2", "#01FF90"]}
                                     start={[0.4, 0.1]} style={styles.learnButton}>
                                     <TouchableOpacity style={styles.touchableFill} onPress={() => {
-                                        navigate('Subjects', {
-                                            pageTo: 'Notes'
-                                        })
+                                        // navigate('Subjects', {
+                                        //     pageTo: 'Notes'
+                                        // })
                                     }}>
                                         <Image source={notesImage} style={styles.notesImage} />
                                         <Text style={styles.subjectText}>
@@ -100,17 +98,17 @@ class Home extends React.Component {
 
                                     <View style={styles.smallerCards}>
                                         <TouchableOpacity style={styles.touchableFill} onPress={() => {
-                                            navigate('Subjects', {
-                                                pageTo: 'Assignments'
-                                            }
-                                            )
+                                            // navigate('Subjects', {
+                                            //     pageTo: 'Assignments'
+                                            // }
+                                            // )
                                         }}>
                                             <Text style={styles.subjectText}>Assignments</Text>
                                         </TouchableOpacity>
                                     </View>
                                     <View style={styles.smallerCards}>
                                         <TouchableOpacity style={styles.touchableFill} onPress={() => {
-                                            navigate('Subjects', { pageTo: 'Quiz' })
+                                            // navigate('Subjects', { pageTo: 'Quiz' })
                                         }}>
                                             <Text style={styles.subjectText}>Quizzes</Text>
                                         </TouchableOpacity>
@@ -122,10 +120,17 @@ class Home extends React.Component {
                             <LinearGradient
                                 colors={["#2479AD", "#16ADA2", "#01FF90"]}
                                 start={[0.4, 0.1]} style={styles.revisionMaterial}>
+                                <TouchableOpacity style={styles.touchableFill2} onPress={() => {
+                                    // navigate('RevisionSubjects', {
+                                    //     pageTo:'RevisionMaterial',
+                                    // })
+                                }}>
                                 <Image source={reviseImage} style={styles.reviseImage} />
                                 <Text style={styles.subjectText}>
                                     Revision Material
-                </Text>
+                                </Text>
+                                <View></View>
+                                </TouchableOpacity>
                                 <View></View>
                             </LinearGradient>
                             <LinearGradient
@@ -195,6 +200,14 @@ const styles = StyleSheet.create(
             height: '100%',
             justifyContent: 'center',
             alignItems: 'center'
+        },
+        touchableFill2: {
+            width: '100%',
+            height: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginRight:20
         },
         smallerCards: {
             width: '100%',

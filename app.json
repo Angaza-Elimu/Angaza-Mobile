@@ -34,7 +34,7 @@
         "WRITE_SETTINGS",
         "READ_SETTINGS"
       ],
-      "versionCode": 6
+      "versionCode": 7
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

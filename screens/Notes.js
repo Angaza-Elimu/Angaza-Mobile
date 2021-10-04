@@ -75,7 +75,7 @@ class Notes extends React.Component {
                                     this.getNotes(value)
                                 }}
                             ><Picker.Item label="Select Subtopic" value="0" key="1" />
-                                {this.state.subtopics.length > 0 ? this.state.subtopics.map((item, index) => {
+                                {this.state.subtopics != [] > 0 ? this.state.subtopics.map((item, index) => {
                                     return (<Picker.Item label={item.subtopic_name} value={item.id} key={index} />)
                                 }) : <Picker.Item label="No topics loaded" value="0" key="1" />}
                             </Picker>

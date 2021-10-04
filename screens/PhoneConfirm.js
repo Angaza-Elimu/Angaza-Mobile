@@ -144,6 +144,7 @@ class PhoneConfirm extends React.Component {
             class: '7',
             phone: this.state.phone,
             learning_level: this.state.learning_level,
+            email: this.state.email,
             user_type: 'student'
         }).then((resp) => {
             console.log(resp.data);
@@ -152,12 +153,14 @@ class PhoneConfirm extends React.Component {
             if (response.access_token !== undefined) {
                 if (resp.data.user.user_type == 'student') {
 
+                    console.log("Follows is response");
+                    console.log(resp.data);
                     AsyncStorage.setItem('access_token', response.access_token);
                     AsyncStorage.setItem('username', resp.data.user.username);
-                    AsyncStorage.setItem('class', resp.data.user.class);
+                    // AsyncStorage.setItem('class', resp.data.user.class);
                     AsyncStorage.setItem('learning_system', resp.data.user.learning_system);
-                    AsyncStorage.setItem('email', resp.data.user.email);
-                    replace('One Time Pass', {
+                    // AsyncStorage.setItem('email', resp.data.user.email);
+                    replace('Pass', {
                         phone_number: this.state.phone
                     });
                 } else {

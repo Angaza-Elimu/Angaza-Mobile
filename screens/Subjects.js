@@ -13,7 +13,7 @@ class Subjects extends React.Component {
             pageTo: props.route.params.pageTo,
             subjects: null,
             loading: false,
-            learning_system: null
+            learning_system: props.route.params.learnig
         };
         console.log(this.state.pageTo);
     }
@@ -21,13 +21,16 @@ class Subjects extends React.Component {
         const { navigation } = this.props;
         // this.getSubjects()
         this.getLearningSystem();
+
+        // this.setState({learning_system: 'primary'});
+
+        // this.setState({learning_system: 'secondary'});
         // this.setState({pageTo: navigation.getParam('pageTo')});
     }
 
     async getLearningSystem() {
-        AsyncStorage.getItem('learning_system').then(response => {
-            this.setState({ learning_system: response })
-        })
+        let learning_system = AsyncStorage.getItem('learning_system');
+        this.setState({learning_system: learning_system});
     }
 
     getSubjects() {
@@ -41,12 +44,13 @@ class Subjects extends React.Component {
 
         })
     }
+  
+    
     render() {
 
         const profileImage = require("../assets/images/profile.png");
 
-        const { navigate, replace, getParam } = this.props.navigation;
-        const { navigation } = this.props;
+        const { navigate} = this.props.navigation;
 
         return (
             <LinearGradient
@@ -71,15 +75,15 @@ class Subjects extends React.Component {
                         </View>
 
                     </View> */}
-                    {this.state.learning_system == 'primary' ? <ScrollView style={styles.screenMain}>
+                     <ScrollView style={styles.screenMain}>
                         {/* <View style={styles.screenMain}> */}
                         <View style={styles.subjectRow}>
                             <TouchableOpacity style={styles.card1} onPress={() => {
 
-                                navigate('Classes', {
-                                    pageTo: this.state.pageTo,
-                                    subjectId: 2
-                                })
+                                // this.navigateTo('Classes', {
+                                //     pageTo: this.state.pageTo,
+                                //     subjectId: 2
+                                // })
 
                             }}>
                                 <Text style={styles.subjectText}>
@@ -87,10 +91,10 @@ class Subjects extends React.Component {
                   </Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.card1} onPress={() => {
-                                navigate('Classes', {
-                                    pageTo: this.state.pageTo,
-                                    subjectId: 1
-                                })
+                                // this.navigateTo('Classes', {
+                                //     pageTo: this.state.pageTo,
+                                //     subjectId: 1
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>
                                     English
@@ -99,20 +103,20 @@ class Subjects extends React.Component {
                         </View>
                         <View style={styles.subjectRow}>
                             <TouchableOpacity style={styles.card1} onPress={() => {
-                                navigate('Classes', {
-                                    pageTo: this.state.pageTo,
-                                    subjectId: 3
-                                })
+                                // this.navigateTo('Classes', {
+                                //     pageTo: this.state.pageTo,
+                                //     subjectId: 4
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>
                                     Kiswahili
                   </Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.card1} onPress={() => {
-                                navigate('Classes', {
-                                    pageTo: this.state.pageTo,
-                                    subjectId: 4
-                                })
+                                // this.navigateTo('Classes', {
+                                //     pageTo: this.state.pageTo,
+                                //     subjectId: 3
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>
                                     Science
@@ -121,20 +125,20 @@ class Subjects extends React.Component {
                         </View>
                         <View style={styles.subjectRow}>
                             <TouchableOpacity style={styles.card1} onPress={() => {
-                                navigate('Classes', {
-                                    pageTo: this.state.pageTo,
-                                    subjectId: 5
-                                })
+                                // this.navigateTo('Classes', {
+                                //     pageTo: this.state.pageTo,
+                                //     subjectId: 5
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>
                                     Social Studies
                   </Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.card1} onPress={() => {
-                                navigate('Classes', {
-                                    pageTo: this.state.pageTo,
-                                    subjectId: 6
-                                })
+                                // this.navigateTo('Classes', {
+                                //     pageTo: this.state.pageTo,
+                                //     subjectId: 6
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>
                                     C.R.E
@@ -143,20 +147,20 @@ class Subjects extends React.Component {
                         </View>
                         <View style={styles.subjectRow}>
                             <TouchableOpacity style={styles.card1} onPress={() => {
-                                navigate('Classes', {
-                                    pageTo: this.state.pageTo,
-                                    subjectId: 7
-                                })
+                                // this.navigateTo('Classes', {
+                                //     pageTo: this.state.pageTo,
+                                //     subjectId: 7
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>
                                     I.R.E
                   </Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.card1} onPress={() => {
-                                navigate('Classes', {
-                                    pageTo: this.state.pageTo,
-                                    subjectId: 8
-                                })
+                                // this.navigateTo('Classes', {
+                                //     pageTo: this.state.pageTo,
+                                //     subjectId: 8
+                                // })
                             }}>
                                 <Text style={styles.subjectText}>
                                     H.R.E
@@ -167,10 +171,10 @@ class Subjects extends React.Component {
                             <View style={styles.subjectRow}>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
 
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 8
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 8
+                                    // })
 
                                 }}>
                                     <Text style={styles.subjectText}>
@@ -178,10 +182,10 @@ class Subjects extends React.Component {
                   </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 9
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 9
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         English
@@ -190,20 +194,20 @@ class Subjects extends React.Component {
                             </View>
                             <View style={styles.subjectRow}>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 10
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 10
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         Kiswahili
                   </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 11
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 11
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         Chemistry
@@ -212,20 +216,20 @@ class Subjects extends React.Component {
                             </View>
                             <View style={styles.subjectRow}>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 12
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 12
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         Biology
                   </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 13
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 13
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         Physics
@@ -234,20 +238,20 @@ class Subjects extends React.Component {
                             </View>
                             <View style={styles.subjectRow}>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 14
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 14
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         C.R.E
                   </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 15
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 15
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         I.R.E
@@ -256,20 +260,20 @@ class Subjects extends React.Component {
                             </View>
                             <View style={styles.subjectRow}>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 19
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 19
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         Geography
                   </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 20
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 20
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         History
@@ -278,20 +282,20 @@ class Subjects extends React.Component {
                             </View>
                             <View style={styles.subjectRow}>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 21
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 21
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         Computer
                   </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 17
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 17
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         Business Studies
@@ -300,10 +304,10 @@ class Subjects extends React.Component {
                             </View>
                             <View style={styles.subjectRow}>
                                 <TouchableOpacity style={styles.card1} onPress={() => {
-                                    navigate('Classes', {
-                                        pageTo: this.state.pageTo,
-                                        subjectId: 18
-                                    })
+                                    // this.navigateTo('Classes', {
+                                    //     pageTo: this.state.pageTo,
+                                    //     subjectId: 18
+                                    // })
                                 }}>
                                     <Text style={styles.subjectText}>
                                         Agriculture
@@ -311,7 +315,7 @@ class Subjects extends React.Component {
                                 </TouchableOpacity>
 
                             </View>
-                        </ScrollView>}
+                        </ScrollView>
                 </SafeAreaView>
             </LinearGradient>
         )

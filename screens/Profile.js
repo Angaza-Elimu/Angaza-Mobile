@@ -103,7 +103,7 @@ class Profile extends React.Component {
                         </View>
 
                     </View>
-                    <View style={styles.screenMain}>
+                    <ScrollView style={styles.screenMain}>
 
                         <View style={styles.planContainer}>
                             
@@ -191,7 +191,7 @@ class Profile extends React.Component {
                                 </View>
                             </TouchableHighlight>
                         </View>
-                    </View>
+                    </ScrollView>
 
                 </SafeAreaView>
             </LinearGradient>
@@ -267,7 +267,8 @@ const styles = StyleSheet.create(
             borderRadius: 14
         },
         modeContainer: {
-            padding: 30,
+            paddingLeft: 30,
+            paddingRight: 30,
             width: '100%',
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -418,7 +419,7 @@ const styles = StyleSheet.create(
         screenMain: {
             width: "100%",
             backgroundColor: '#fff',
-            alignItems: 'center',
+            
             height: "100%",
             top: 40,
             borderTopLeftRadius: 20,

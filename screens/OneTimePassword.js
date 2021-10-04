@@ -13,7 +13,7 @@ class OneTimePassword extends React.Component {
         super(props);
         this.state = {
             loading: false,
-            phone: props.route.params.phone,
+            phone: props.route.params.phone_number,
             otp:''
         };
 
@@ -57,7 +57,7 @@ class OneTimePassword extends React.Component {
                                     secureTextEntry={true}
                                     autoCorrect={false}
                                     value={this.state.otp}
-                                    onChangeText={(otp) => { this.setState({ otp }) }}
+                                    onChangeText={(otp) => { this.setState({ otp:otp }) }}
                                 />
 
                             </View>
@@ -96,6 +96,8 @@ class OneTimePassword extends React.Component {
         
         
         this.setState({ loading: true })
+        console.log(this.state.phone);
+        console.log(this.state.otp);
         axios.post('http://staging.angazaelimu.com/api/auth/confirmPhone', {
            
             phone: this.state.phone,

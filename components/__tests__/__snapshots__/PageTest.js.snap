@@ -1,0 +1,1929 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Quiz renders correctly 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  proxiedProperties={
+    Object {
+      "colors": Array [
+        4280580525,
+        4279676322,
+        4278321040,
+      ],
+      "endPoint": undefined,
+      "locations": undefined,
+      "startPoint": Array [
+        0.4,
+        0.1,
+      ],
+    }
+  }
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <RNCSafeAreaView
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <Modal
+      animationType="none"
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      transparent={true}
+      visible={true}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.4)",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 10,
+              "height": 100,
+              "justifyContent": "center",
+              "width": 100,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#235190"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </View>
+      </View>
+    </Modal>
+    <Modal
+      animationType="slide"
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      transparent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "marginTop": 22,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 20,
+              "elevation": 5,
+              "margin": 20,
+              "padding": 35,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 3.84,
+              "width": "92%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#2479AD",
+                "borderRadius": 14,
+                "margin": 10,
+                "paddingBottom": 14,
+                "paddingTop": 14,
+                "width": "90%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                }
+              }
+            >
+              Close
+            </Text>
+          </View>
+        </View>
+      </View>
+    </Modal>
+    <View />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderTopLeftRadius": 20,
+          "borderTopRightRadius": 20,
+          "height": "100%",
+          "top": 40,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": "10%",
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "10%",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "margin": 20,
+                "width": 150,
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "Select Topic",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                  Object {
+                    "label": "No topics loaded",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              selectedIndex={0}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "margin": 20,
+                "width": 150,
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "Select Subtopic",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                  Object {
+                    "label": "No topics loaded",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              selectedIndex={0}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <RCTScrollView
+        collapsable={false}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "70%",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text>
+              Select Topic and Subtopic to load content
+            </Text>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </RNCSafeAreaView>
+</ViewManagerAdapter_ExpoLinearGradient>
+`;
+
+exports[`rendering Assignment Question Answered 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  proxiedProperties={
+    Object {
+      "colors": Array [
+        4280580525,
+        4279676322,
+        4278321040,
+      ],
+      "endPoint": undefined,
+      "locations": undefined,
+      "startPoint": Array [
+        0.4,
+        0.1,
+      ],
+    }
+  }
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <RNCSafeAreaView
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <Modal
+      animationType="none"
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      transparent={true}
+      visible={true}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.4)",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 10,
+              "height": 100,
+              "justifyContent": "center",
+              "width": 100,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#235190"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </View>
+      </View>
+    </Modal>
+    <Modal
+      animationType="slide"
+      hardwareAccelerated={false}
+      transparent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "marginTop": 22,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 20,
+              "elevation": 5,
+              "margin": 20,
+              "padding": 35,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 3.84,
+              "width": "92%",
+            }
+          }
+        >
+          <View>
+            <Text>
+              No Additional Notes
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#2479AD",
+                "borderRadius": 14,
+                "margin": 10,
+                "paddingBottom": 14,
+                "paddingTop": 14,
+                "width": "90%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                }
+              }
+            >
+              Close
+            </Text>
+          </View>
+        </View>
+      </View>
+    </Modal>
+    <View />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderTopLeftRadius": 20,
+          "borderTopRightRadius": 20,
+          "height": "100%",
+          "top": 40,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": "10%",
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "10%",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "margin": 20,
+                "width": 150,
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "Select Topic",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                  Object {
+                    "label": "No topics loaded",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              selectedIndex={0}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "margin": 20,
+                "width": 150,
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "Select Subtopic",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                  Object {
+                    "label": "No topics loaded",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              selectedIndex={0}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <RCTScrollView
+        collapsable={false}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "70%",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text>
+              Select Topic and Subtopic to load content
+            </Text>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </RNCSafeAreaView>
+</ViewManagerAdapter_ExpoLinearGradient>
+`;
+
+exports[`rendering Assignment renders correctly 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  proxiedProperties={
+    Object {
+      "colors": Array [
+        4280580525,
+        4279676322,
+        4278321040,
+      ],
+      "endPoint": undefined,
+      "locations": undefined,
+      "startPoint": Array [
+        0.4,
+        0.1,
+      ],
+    }
+  }
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <RNCSafeAreaView
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <Modal
+      animationType="none"
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      transparent={true}
+      visible={true}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.4)",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 10,
+              "height": 100,
+              "justifyContent": "center",
+              "width": 100,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#235190"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </View>
+      </View>
+    </Modal>
+    <Modal
+      animationType="slide"
+      hardwareAccelerated={false}
+      transparent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "marginTop": 22,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 20,
+              "elevation": 5,
+              "margin": 20,
+              "padding": 35,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 3.84,
+              "width": "92%",
+            }
+          }
+        >
+          <View>
+            <Text>
+              No Additional Notes
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#2479AD",
+                "borderRadius": 14,
+                "margin": 10,
+                "paddingBottom": 14,
+                "paddingTop": 14,
+                "width": "90%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                }
+              }
+            >
+              Close
+            </Text>
+          </View>
+        </View>
+      </View>
+    </Modal>
+    <View />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderTopLeftRadius": 20,
+          "borderTopRightRadius": 20,
+          "height": "100%",
+          "top": 40,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": "10%",
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "10%",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "margin": 20,
+                "width": 150,
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "Select Topic",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                  Object {
+                    "label": "No topics loaded",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              selectedIndex={0}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "margin": 20,
+                "width": 150,
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "Select Subtopic",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                  Object {
+                    "label": "No topics loaded",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              selectedIndex={0}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <RCTScrollView
+        collapsable={false}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "70%",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text>
+              Select Topic and Subtopic to load content
+            </Text>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </RNCSafeAreaView>
+</ViewManagerAdapter_ExpoLinearGradient>
+`;
+
+exports[`rendering Classes renders correctly 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  proxiedProperties={
+    Object {
+      "colors": Array [
+        4280580525,
+        4279676322,
+        4278321040,
+      ],
+      "endPoint": undefined,
+      "locations": undefined,
+      "startPoint": Array [
+        0.4,
+        0.1,
+      ],
+    }
+  }
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <RNCSafeAreaView
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginTop": 10,
+            "paddingBottom": "10%",
+            "paddingLeft": "8%",
+            "paddingTop": "10%",
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#fff",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "lineHeight": 30,
+              "paddingRight": 4,
+            }
+          }
+        >
+          Select
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#fff",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "lineHeight": 30,
+              "paddingRight": 4,
+            }
+          }
+        >
+          Class
+        </Text>
+        <View
+          style={
+            Object {
+              "marginTop": 40,
+              "position": "absolute",
+              "right": 20,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 40,
+                "width": 40,
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+    <RCTScrollView
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "borderTopLeftRadius": 20,
+          "borderTopRightRadius": 20,
+          "height": "80%",
+          "top": 40,
+          "width": "100%",
+        }
+      }
+    >
+      <View>
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4280580525,
+                4278321040,
+              ],
+              "endPoint": undefined,
+              "locations": undefined,
+              "startPoint": Array [
+                0.5,
+                0.3,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#0E6CCB",
+              "borderRadius": 20,
+              "height": 60,
+              "justifyContent": "center",
+              "margin": 20,
+              "width": "90%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "100%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Form 1
+            </Text>
+          </View>
+        </ViewManagerAdapter_ExpoLinearGradient>
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4280580525,
+                4278321040,
+              ],
+              "endPoint": undefined,
+              "locations": undefined,
+              "startPoint": Array [
+                0.5,
+                0.3,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#0E6CCB",
+              "borderRadius": 20,
+              "height": 60,
+              "justifyContent": "center",
+              "margin": 20,
+              "width": "90%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "100%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Form 2
+            </Text>
+          </View>
+        </ViewManagerAdapter_ExpoLinearGradient>
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4280580525,
+                4278321040,
+              ],
+              "endPoint": undefined,
+              "locations": undefined,
+              "startPoint": Array [
+                0.5,
+                0.3,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#0E6CCB",
+              "borderRadius": 20,
+              "height": 60,
+              "justifyContent": "center",
+              "margin": 20,
+              "width": "90%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "100%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Form 3
+            </Text>
+          </View>
+        </ViewManagerAdapter_ExpoLinearGradient>
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4280580525,
+                4278321040,
+              ],
+              "endPoint": undefined,
+              "locations": undefined,
+              "startPoint": Array [
+                0.5,
+                0.3,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#0E6CCB",
+              "borderRadius": 20,
+              "height": 60,
+              "justifyContent": "center",
+              "margin": 20,
+              "width": "90%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "100%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Form 4
+            </Text>
+          </View>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </RCTScrollView>
+  </RNCSafeAreaView>
+</ViewManagerAdapter_ExpoLinearGradient>
+`;
+
+exports[`rendering Home renders correctly 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  proxiedProperties={
+    Object {
+      "colors": Array [
+        4280580525,
+        4279676322,
+        4278321040,
+      ],
+      "endPoint": undefined,
+      "locations": undefined,
+      "startPoint": Array [
+        0.4,
+        0.1,
+      ],
+    }
+  }
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <RNCSafeAreaView
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "borderTopLeftRadius": 20,
+          "borderTopRightRadius": 20,
+          "height": "100%",
+          "top": 40,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "padding": 24,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#2479AD",
+              "fontSize": 20,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Learn
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "height": "100%",
+            "paddingLeft": 20,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            proxiedProperties={
+              Object {
+                "colors": Array [
+                  4280580525,
+                  4279676322,
+                  4278321040,
+                ],
+                "endPoint": undefined,
+                "locations": undefined,
+                "startPoint": Array [
+                  0.4,
+                  0.1,
+                ],
+              }
+            }
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#0E6CCB",
+                "borderRadius": 20,
+                "height": 125,
+                "justifyContent": "center",
+                "width": "40%",
+              }
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "opacity": 1,
+                  "width": "100%",
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 90,
+                    "width": 90,
+                  }
+                }
+              />
+              <Text
+                style={
+                  Object {
+                    "color": "#fff",
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Notes
+              </Text>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "marginLeft": 20,
+                "width": "50%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#2479AD",
+                  "borderRadius": 15,
+                  "height": 55,
+                  "justifyContent": "center",
+                  "marginBottom": 10,
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#fff",
+                      "fontWeight": "bold",
+                    }
+                  }
+                >
+                  Assignments
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#2479AD",
+                  "borderRadius": 15,
+                  "height": 55,
+                  "justifyContent": "center",
+                  "marginBottom": 10,
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#fff",
+                      "fontWeight": "bold",
+                    }
+                  }
+                >
+                  Quizzes
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4280580525,
+                4279676322,
+                4278321040,
+              ],
+              "endPoint": undefined,
+              "locations": undefined,
+              "startPoint": Array [
+                0.4,
+                0.1,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#0E6CCB",
+              "borderRadius": 20,
+              "flexDirection": "row",
+              "height": 70,
+              "justifyContent": "space-between",
+              "marginRight": 20,
+              "marginTop": 20,
+              "width": "95%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "space-between",
+                "marginRight": 20,
+                "opacity": 1,
+                "width": "100%",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 60,
+                  "marginLeft": 20,
+                  "width": 60,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#fff",
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Revision Material
+            </Text>
+            <View />
+          </View>
+          <View />
+        </ViewManagerAdapter_ExpoLinearGradient>
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4280580525,
+                4279676322,
+                4278321040,
+              ],
+              "endPoint": undefined,
+              "locations": undefined,
+              "startPoint": Array [
+                0.4,
+                0.1,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#0E6CCB",
+              "borderRadius": 20,
+              "flexDirection": "row",
+              "height": 70,
+              "justifyContent": "space-between",
+              "marginRight": 20,
+              "marginTop": 20,
+              "width": "95%",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 60,
+                "marginLeft": 20,
+                "width": 60,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#fff",
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Ask a Teacher
+          </Text>
+          <View />
+        </ViewManagerAdapter_ExpoLinearGradient>
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4280580525,
+                4279676322,
+                4278321040,
+              ],
+              "endPoint": undefined,
+              "locations": undefined,
+              "startPoint": Array [
+                0.4,
+                0.1,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#0E6CCB",
+              "borderRadius": 20,
+              "flexDirection": "row",
+              "height": 70,
+              "justifyContent": "space-between",
+              "marginRight": 20,
+              "marginTop": 20,
+              "width": "95%",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 60,
+                "marginLeft": 20,
+                "width": 60,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#fff",
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Class Forum
+          </Text>
+          <View />
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </View>
+  </RNCSafeAreaView>
+</ViewManagerAdapter_ExpoLinearGradient>
+`;
+
+exports[`rendering Notes renders correctly 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  proxiedProperties={
+    Object {
+      "colors": Array [
+        4280580525,
+        4279676322,
+        4278321040,
+      ],
+      "endPoint": undefined,
+      "locations": undefined,
+      "startPoint": Array [
+        0.4,
+        0.1,
+      ],
+    }
+  }
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <RNCSafeAreaView
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <Modal
+      animationType="none"
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      transparent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.4)",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 10,
+              "height": 100,
+              "justifyContent": "center",
+              "width": 100,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={false}
+            color="#235190"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </View>
+      </View>
+    </Modal>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderTopLeftRadius": 20,
+          "borderTopRightRadius": 20,
+          "height": "100%",
+          "top": 40,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "column",
+            "height": "10%",
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "margin": 20,
+              "width": 300,
+            }
+          }
+        >
+          <RCTPicker
+            items={
+              Array [
+                Object {
+                  "label": "Select Topic",
+                  "textColor": undefined,
+                  "value": "0",
+                },
+                Object {
+                  "label": "No topics loaded",
+                  "textColor": undefined,
+                  "value": "0",
+                },
+              ]
+            }
+            onChange={[Function]}
+            selectedIndex={0}
+            style={
+              Array [
+                Object {
+                  "height": 216,
+                },
+                undefined,
+              ]
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "margin": 20,
+              "width": 300,
+            }
+          }
+        >
+          <RCTPicker
+            items={
+              Array [
+                Object {
+                  "label": "Select Subtopic",
+                  "textColor": undefined,
+                  "value": "0",
+                },
+                Object {
+                  "label": "No topics loaded",
+                  "textColor": undefined,
+                  "value": "0",
+                },
+              ]
+            }
+            onChange={[Function]}
+            selectedIndex={0}
+            style={
+              Array [
+                Object {
+                  "height": 216,
+                },
+                undefined,
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "height": "80%",
+            "width": "100%",
+          }
+        }
+      >
+        <View />
+      </View>
+    </View>
+  </RNCSafeAreaView>
+</ViewManagerAdapter_ExpoLinearGradient>
+`;
+
+exports[`rendering Primary Subject renders correctly 1`] = `null`;
+
+exports[`rendering Progress Renders Correctly 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  proxiedProperties={
+    Object {
+      "colors": Array [
+        4280580525,
+        4279676322,
+        4278321040,
+      ],
+      "endPoint": undefined,
+      "locations": undefined,
+      "startPoint": Array [
+        0.4,
+        0.1,
+      ],
+    }
+  }
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <RNCSafeAreaView
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "row",
+            "height": "30%",
+            "marginTop": 10,
+            "paddingBottom": "10%",
+            "paddingLeft": "8%",
+            "paddingTop": "10%",
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={Object {}}
+        >
+          <Text
+            style={
+              Object {
+                "color": "#fff",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 30,
+              }
+            }
+          >
+            Progress
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "marginTop": 40,
+              "position": "absolute",
+              "right": 20,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 40,
+                "width": 40,
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderTopLeftRadius": 20,
+          "borderTopRightRadius": 20,
+          "height": "80%",
+          "justifyContent": "center",
+          "top": 40,
+          "width": "100%",
+        }
+      }
+    />
+  </RNCSafeAreaView>
+</ViewManagerAdapter_ExpoLinearGradient>
+`;
+
+exports[`rendering Secondary Subject renders correctly 1`] = `null`;
+
+exports[`renders correctly 1`] = `
+<Text
+  style={
+    Array [
+      undefined,
+      Object {
+        "fontFamily": "space-mono",
+      },
+    ]
+  }
+>
+  Snapshot test!
+</Text>
+`;

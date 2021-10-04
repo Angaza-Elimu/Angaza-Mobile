@@ -8,7 +8,7 @@ export default {
             username: username,
             password: password
         }
-        return fetch("http://localhost:8000/api/auth/login", {
+        return fetch("http://staging.angazaelimu.com/api/auth/login", {
             method:"POST",
             body: JSON.stringify(data),
         }).then((response) => response.json()).then((responseData) => {

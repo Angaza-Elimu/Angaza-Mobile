@@ -4,25 +4,17 @@ import Config from 'react-native-config';
 import { AsyncStorage } from 'react-native';
 
 // Config.NET_STATUS
-export function retrieveAccessToken() {
-    AsyncStorage.getItem('access_token').then(response => {
+export async function retrieveAccessToken() {
+    await AsyncStorage.getItem('access_token').then(response => {
         console.log(response);
         return response;
     })
 }
 
-export function getUserDetails() {
+export async function retrieveClasses(learning_system) {
+    let access_token = await retrieveAccessToken();
 
-}
-
-export function retrieveLearningSystem() {
-
-}
-
-export function retrieveClasses(learning_system) {
-    let access_token = retrieveAccessToken();
-
-    axios.post('https://staging.angazaelimu.com/api/getStudentClasses', {}, {
+    await axios.post('https://staging.angazaelimu.com/api/getStudentClasses', {}, {
         headers: {
             "Authorization": "Bearer " + access_token
         }
@@ -49,6 +41,7 @@ export async function retrieveQuiz(subtopic_id, type){
 }
 
 export async function answerQuestion(subject_id,subtopic_id, marked,answer,question_id,student_id,quiz_id,type){
+    console.log(type);
     let data = {
         subject_id: subject_id,
         subtopic_id: subtopic_id,
@@ -86,7 +79,7 @@ export async function retrieveNotes(subtopic_id) {
 }
 
 export async function retrieveSubjects(learningSystem) {
-    AsyncStorage.getItem('access_token').then(response => {
+    await AsyncStorage.getItem('access_token').then(response => {
         axios.get('https://staging.angazaelimu.com/api/getSubjects', {
             headers: {
                 "Authorization": "Bearer " + response
