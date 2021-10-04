@@ -78,7 +78,7 @@ class Home extends React.Component {
                         </View>
                         <View style={styles.serviceContainer}>
                             <View style={styles.firstRow}>
-                                
+
                                 <LinearGradient
                                     colors={["#2479AD", "#16ADA2", "#01FF90"]}
                                     start={[0.4, 0.1]} style={styles.learnButton}>
@@ -86,11 +86,13 @@ class Home extends React.Component {
                                         // navigate('Subjects', {
                                         //     pageTo: 'Notes'
                                         // })
-                                    }}>
-                                        <Image source={notesImage} style={styles.notesImage} />
-                                        <Text style={styles.subjectText}>
-                                            Notes
-                                 </Text>
+                                    }}><View>
+                                            <Image source={notesImage} style={styles.notesImage} />
+                                            <Text style={styles.subjectText}>
+                                                Notes
+                                        </Text>
+                                        </View>
+
                                     </TouchableOpacity>
 
                                 </LinearGradient>
@@ -125,11 +127,13 @@ class Home extends React.Component {
                                     //     pageTo:'RevisionMaterial',
                                     // })
                                 }}>
-                                <Image source={reviseImage} style={styles.reviseImage} />
-                                <Text style={styles.subjectText}>
-                                    Revision Material
+
+                                    <View>
+                                        <Image source={reviseImage} style={styles.reviseImage} />
+                                        <Text style={styles.subjectText}>
+                                            Revision Material
                                 </Text>
-                                <View></View>
+                                    </View>
                                 </TouchableOpacity>
                                 <View></View>
                             </LinearGradient>
@@ -207,7 +211,7 @@ const styles = StyleSheet.create(
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginRight:20
+            marginRight: 20
         },
         smallerCards: {
             width: '100%',
@@ -357,7 +361,7 @@ const styles = StyleSheet.create(
             paddingTop: '5%',
             paddingBottom: '8%',
             paddingLeft: '8%',
-            
+
         },
         profileContainer: {
             position: "absolute",

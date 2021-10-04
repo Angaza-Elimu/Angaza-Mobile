@@ -432,7 +432,11 @@
 <a name='L373'></a><a href='#L373'>373</a>
 <a name='L374'></a><a href='#L374'>374</a>
 <a name='L375'></a><a href='#L375'>375</a>
-<a name='L376'></a><a href='#L376'>376</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L376'></a><a href='#L376'>376</a>
+<a name='L377'></a><a href='#L377'>377</a>
+<a name='L378'></a><a href='#L378'>378</a>
+<a name='L379'></a><a href='#L379'>379</a>
+<a name='L380'></a><a href='#L380'>380</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -444,22 +448,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -469,15 +466,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -887,7 +895,7 @@ class Home extends React.Component {
                         &lt;/View&gt;
                         &lt;View style={styles.serviceContainer}&gt;
                             &lt;View style={styles.firstRow}&gt;
-                                
+&nbsp;
                                 &lt;LinearGradient
                                     colors={["#2479AD", "#16ADA2", "#01FF90"]}
                                     start={[0.4, 0.1]} style={styles.learnButton}&gt;
@@ -895,11 +903,13 @@ class Home extends React.Component {
                                         // navigate('Subjects', {
                                         //     pageTo: 'Notes'
                                         // })
-                                    }}&gt;
-                                        &lt;Image source={notesImage} style={styles.notesImage} /&gt;
-                                        &lt;Text style={styles.subjectText}&gt;
-                                            Notes
-                                 &lt;/Text&gt;
+                                    }}&gt;&lt;View&gt;
+                                            &lt;Image source={notesImage} style={styles.notesImage} /&gt;
+                                            &lt;Text style={styles.subjectText}&gt;
+                                                Notes
+                                        &lt;/Text&gt;
+                                        &lt;/View&gt;
+&nbsp;
                                     &lt;/TouchableOpacity&gt;
 &nbsp;
                                 &lt;/LinearGradient&gt;
@@ -934,11 +944,13 @@ class Home extends React.Component {
                                     //     pageTo:'RevisionMaterial',
                                     // })
                                 }}&gt;
-                                &lt;Image source={reviseImage} style={styles.reviseImage} /&gt;
-                                &lt;Text style={styles.subjectText}&gt;
-                                    Revision Material
+&nbsp;
+                                    &lt;View&gt;
+                                        &lt;Image source={reviseImage} style={styles.reviseImage} /&gt;
+                                        &lt;Text style={styles.subjectText}&gt;
+                                            Revision Material
                                 &lt;/Text&gt;
-                                &lt;View&gt;&lt;/View&gt;
+                                    &lt;/View&gt;
                                 &lt;/TouchableOpacity&gt;
                                 &lt;View&gt;&lt;/View&gt;
                             &lt;/LinearGradient&gt;
@@ -1016,7 +1028,7 @@ const styles = StyleSheet.create(
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginRight:20
+            marginRight: 20
         },
         smallerCards: {
             width: '100%',
@@ -1166,7 +1178,7 @@ const styles = StyleSheet.create(
             paddingTop: '5%',
             paddingBottom: '8%',
             paddingLeft: '8%',
-            
+&nbsp;
         },
         profileContainer: {
             position: "absolute",
@@ -1189,7 +1201,7 @@ export default Home;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Oct 04 2021 14:55:45 GMT+0300 (East Africa Time)
+                at Tue Oct 05 2021 00:44:34 GMT+0300 (East Africa Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

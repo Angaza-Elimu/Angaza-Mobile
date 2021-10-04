@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { LinearGradient } from "expo-linear-gradient";
-import { View, StyleSheet, Text, Modal, Image, TouchableHighlight, Picker, Alert, ToastAndroid } from 'react-native';
+import { View, StyleSheet, Text, Modal, Image, Picker, TouchableHighlight, Alert, ToastAndroid } from 'react-native';
+// import { Picker } from '@react-native-community/picker';
 import HTML from "react-native-render-html";
 import AutoHeightWebView from 'react-native-autoheight-webview';
 
@@ -37,11 +38,7 @@ class Assignment extends React.Component {
 
     getQuestions(value) {
         this.setState({loading:true})
-        return DataService.retrieveQuiz(value, 'assignments').then(response => {
-            console.log(response);
-            this.setState({ questions: response, current_question: response[this.state.current_index], loading:false });
-            return;
-        })
+        return DataService.retrieveQuiz(value, 'assignments').then(response => {this.setState({ questions: response, current_question: response[this.state.current_index], loading:false });})
     }
     componentDidMount() {
     
@@ -60,20 +57,8 @@ class Assignment extends React.Component {
                     console.log(response);
                     ToastAndroid.showWithGravity("Answer Correct", ToastAndroid.SHORT, ToastAndroid.TOP );
                 })
-            } else {
-                this.setState({ question_answered: true, highlight_option: option_id })
-                DataService.answerQuestion(this.state.subject_id, this.state.selectedsubTopic, 0, option_id, this.state.current_question.id,this.state.user_id,0,'assignment_answers').then(response => {
-                    this.setState({ question_answered: true })
-
-                    ToastAndroid.showWithGravity("Answer Wrong", ToastAndroid.SHORT, ToastAndroid.TOP );
-                    console.log(response);
-                })
-            }
-        } else {
-            Alert.alert("", "Question already answered.")
-        }
-
-
+            } else {this.setState({ question_answered: true, highlight_option: option_id });DataService.answerQuestion(this.state.subject_id, this.state.selectedsubTopic, 0, option_id, this.state.current_question.id,this.state.user_id,0,'assignment_answers').then(response => {this.setState({ question_answered: true });ToastAndroid.showWithGravity("Answer Wrong", ToastAndroid.SHORT, ToastAndroid.TOP );})}
+        } else {Alert.alert("", "Question already answered.")}
     }
     checkAnswer() {
         if (this.state.highlight_option == null) {
@@ -88,16 +73,10 @@ class Assignment extends React.Component {
 
         console.log("Index: " + this.state.current_index);
         if (this.state.question_answered == true && this.state.current_index != this.state.questions.length - 1) {
-
             this.setState({ question_answered: false, highlight_option: null })
             this.setState({ current_index: this.state.current_index + 1, highlight_option: null, question_answered: false, current_question: this.state.questions[this.state.current_index + 1]})
-        } else if(this.state.question_answered == true && this.state.current_index == this.state.questions.length - 1){
-            Alert.alert("", "Questions Complete");
-            navigate('Home');
-
-        } else {
-            Alert.alert("", "Kindly answer the question")
-        }
+        } else if(this.state.question_answered == true && this.state.current_index == this.state.questions.length - 1){ Alert.alert("", "Questions Complete");navigate('Home');
+        } else {Alert.alert("", "Kindly answer the question")}
     }
 
     render() {
@@ -153,34 +132,14 @@ class Assignment extends React.Component {
                     {this.state.checkAnswer == false ? <View style={styles.screenMain}>
                         <View style={styles.headerRow}>
                             <View style={styles.headerRow}>
-                                <Picker
-                                    selectedValue={this.state.selectedTopic}
-                                    placeholder="Topics"
-                                    style={{ margin: 20, width: 150 }}
-                                    onValueChange={(value) => {
-
-                                        this.setState({ selectedTopic: value });
-                                        this.getSubtopics(value)
-                                    }}
+                                {/* <Picker selectedValue={this.state.selectedTopic} style={{ margin: 20, width: 150 }} onValueChange={(value) => {this.setState({ selectedTopic: value });this.getSubtopics(value);}}
                                 ><Picker.Item label="Select Topic" value="0" key="1" />
-                                    {this.state.topics.length > 0 ? this.state.topics.map((item, index) => {
-                                        return (<Picker.Item label={item.topic_name} value={item.id} key={index} />)
-                                    }) : <Picker.Item label="No topics loaded" value="0" key="1" />}
+                                    {this.state.topics.length > 0 ? this.state.topics.map((item, index) => {return (<Picker.Item label={item.topic_name} value={item.id} key={index} />)}) : <Picker.Item label="No topics loaded" value="0" key="1" />}
                                 </Picker>
-                                <Picker
-                                    selectedValue={this.state.selectedsubTopic}
-                                    placeholder="Subtopic"
-                                    style={{ margin: 20, width: 150 }}
-                                    onValueChange={(value) => {
-
-                                        this.setState({ selectedsubTopic: value });
-                                        this.getQuestions(value)
-                                    }}
+                                <Picker selectedValue={this.state.selectedsubTopic} placeholder="Subtopic" style={{ margin: 20, width: 150 }} onValueChange={(value) => {this.setState({ selectedsubTopic: value });this.getQuestions(value);}}
                                 ><Picker.Item label="Select Subtopic" value="0" key="1" />
-                                    {this.state.subtopics.length > 0 ? this.state.subtopics.map((item, index) => {
-                                        return (<Picker.Item label={item.subtopic_name} value={item.id} key={index} />)
-                                    }) : <Picker.Item label="No topics loaded" value="0" key="1" />}
-                                </Picker>
+                                    {this.state.subtopics.length > 0 ? this.state.subtopics.map((item, index) => { return (<Picker.Item label={item.subtopic_name} value={item.id} key={index} />)}) : <Picker.Item label="No topics loaded" value="0" key="1" />}
+                                </Picker> */}
                             </View>
                         </View>
                         <ScrollView>
@@ -188,101 +147,58 @@ class Assignment extends React.Component {
                                 <View style={styles.questionContainer}>
                                     <HTML html={this.state.current_question.question} />
                                 </View>
-                                {this.state.highlight_option !== 1 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                    // this.answerQuestion(1)
-                                }}>
-                                    <Text style={styles.optionChoice}>
-                                        A.
-                                </Text>
-
+                                {this.state.highlight_option !== 1 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {this.answerQuestion(1)}}>
+                                    <Text style={styles.optionChoice}>A.</Text>
                                     <HTML html={this.state.current_question.option_a} />
-                                </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                    // this.answerQuestion(1)
-                                }}>
-                                        <Text style={styles.optionChoice}>
-                                            A.
-                                </Text>
-
+                                </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {this.answerQuestion(1)}}>
+                                        <Text style={styles.optionChoice}>A. </Text>
                                         <HTML html={this.state.current_question.option_a} />
                                     </TouchableOpacity>}
-                                {this.state.highlight_option !== 2 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                    // this.answerQuestion(2)
-                                }}>
-                                    <Text style={styles.optionChoice}>
-                                        B.
-                                </Text>
-
+                                {this.state.highlight_option !== 2 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {this.answerQuestion(2)}}>
+                                    <Text style={styles.optionChoice}> B.</Text>
                                     <HTML html={this.state.current_question.option_b} />
-                                </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                    // this.answerQuestion(2)
-                                }}>
-                                        <Text style={styles.optionChoice}>
-                                            B.
-                                </Text>
-
+                                </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {this.answerQuestion(2)}}>
+                                        <Text style={styles.optionChoice}>B.</Text>
                                         <HTML html={this.state.current_question.option_b} />
                                     </TouchableOpacity>}
-                                {this.state.highlight_option !== 3 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                    // this.answerQuestion(3)
-                                }}>
+                                {this.state.highlight_option !== 3 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {this.answerQuestion(3)}}>
                                     <Text style={styles.optionChoice}>
                                         C.
-                                </Text>
-
-                                    <HTML html={this.state.current_question.option_c} />
-                                </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                    // this.answerQuestion(3)
-                                }}>
+                                </Text><HTML html={this.state.current_question.option_c} />
+                                </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {this.answerQuestion(3)}}>
                                         <Text style={styles.optionChoice}>
                                             C.
-                                </Text>
-
-                                        <HTML html={this.state.current_question.option_c} />
+                                </Text>  <HTML html={this.state.current_question.option_c} />
                                     </TouchableOpacity>}
-                                {this.state.highlight_option !== 4 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {
-                                    // this.answerQuestion(4)
-                                }}>
+                                {this.state.highlight_option !== 4 ? <TouchableOpacity style={styles.questionContainer} onPress={() => {this.answerQuestion(4)}}>
                                     <Text style={styles.optionChoice}>
                                         D.
-                                </Text>
-
-                                    <HTML html={this.state.current_question.option_d} />
-                                </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {
-                                    this.answerQuestion(4)
-                                }}>
+                                </Text><HTML html={this.state.current_question.option_d} />
+                                </TouchableOpacity> : <TouchableOpacity style={styles.highlightedContainer} onPress={() => {this.answerQuestion(4)}}>
                                         <Text style={styles.optionChoice}>
                                             D.
-                                </Text>
-
-                                        <HTML html={this.state.current_question.option_d} />
+                                </Text>  <HTML html={this.state.current_question.option_d} />
                                     </TouchableOpacity>}
                                 <View style={styles.bottomContainer}>
                                     <View style={styles.buttonContainer}>
-                                        <TouchableHighlight style={styles.buttonStyle} onPress={() => {
-                                            this.checkAnswer();
-                                        }
-
-                                        }>
-                                            <View style={styles.buttonWrap}>
-
-                                                <Text style={styles.buttonText}>Check Answer</Text>
+                                        <TouchableHighlight style={styles.buttonStyle} onPress={() => { this.checkAnswer(); }}>
+                                            <View style={styles.buttonWrap}>  <Text style={styles.buttonText}>Check Answer</Text>
                                             </View>
                                         </TouchableHighlight>
-                                    </View>
-
-                                    <View style={styles.buttonContainer}>
-                                        <TouchableHighlight style={styles.buttonStyle} onPress={() => {
-                                            this.nextQuestion();
-                                        }
-
-                                        }>
-                                            <View style={styles.buttonWrap}>
-
-                                                <Text style={styles.buttonText}>Next Question</Text>
+                                    </View>  <View style={styles.buttonContainer}>
+                                        <TouchableHighlight style={styles.buttonStyle} onPress={() => { this.nextQuestion(); }}>
+                                            <View style={styles.buttonWrap}>  <Text style={styles.buttonText}>Next Question</Text>
                                             </View>
                                         </TouchableHighlight>
                                     </View>
                                 </View>
+
+
+
+
+
+
+                                
                             </View> : <View style={styles.centerInstruction}>
                                     <Text>
                                         Select Topic and Subtopic to load content
@@ -292,7 +208,6 @@ class Assignment extends React.Component {
 
 
                     </View> : <View></View>}
-
                 </SafeAreaView>
             </LinearGradient>
         )
@@ -303,45 +218,14 @@ class Assignment extends React.Component {
         console.log(this.state.netState);
         this.setState({ loading: true });
         if (this.state.netState == 'online') {
-            DataService.retrieveTopics(this.state.class, this.state.subject_id).then(response => {
-
-                this.setState({ topics: response });
-                this.setState({ loading: false });
-            })
-        } else {
-            console.log(
-                {
-                    class: this.state.class, subject_id: this.state.subject_id
-                }
-            )
-            executeSql('SELECT * FROM topics WHERE class=' + this.state.class + ' AND subject_id=' + this.state.subject_id).then((rows) => {
-
-                console.log(rows);
-                this.setState({ topics: rows.rows._array });
-                this.setState({ loading: false });
-            });
-
-
+            DataService.retrieveTopics(this.state.class, this.state.subject_id).then(response => {this.setState({ topics: response,loading:false });})
+        } else {         
+            executeSql('SELECT * FROM topics WHERE class=' + this.state.class + ' AND subject_id=' + this.state.subject_id).then((rows) => {this.setState({ topics: rows.rows._array, loading:false });});
         }
     }
     getSubtopics(topic_id) {
-        //fetch or check db based on config value
         this.setState({ loading: true });
-        console.log(topic_id);
-        if (this.state.netState == 'online') {
-            DataService.retrieveSubtopics(topic_id).then(response => {
-                this.setState({ subtopics: response.rows });
-                this.setState({ loading: false });
-            })
-        } else {
-            executeSql('SELECT * FROM subtopics WHERE topic_id=' + topic_id).then((rows) => {
-                console.log(rows);
-                this.setState({ subtopics: rows.rows._array });
-                this.setState({ loading: false });
-            });
-        }
-
-
+        if (this.state.netState == 'online') {DataService.retrieveSubtopics(topic_id).then(response => {this.setState({ subtopics: response.rows, loading:false});})} else { executeSql('SELECT * FROM subtopics WHERE topic_id=' + topic_id).then((rows) => {this.setState({ subtopics: rows.rows._array, loading:false});});}
     }
 }
 const styles = StyleSheet.create(

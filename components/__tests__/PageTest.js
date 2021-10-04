@@ -3,6 +3,8 @@ import renderer, { act } from 'react-test-renderer';
 import {TouchableOpacity } from 'react-native';
 import { MonoText } from '../StyledText';
 import Quiz from '../../screens/Quiz';
+
+import { View, StyleSheet, Text, TextInput, Image, Picker, TouchableHighlight, AsyncStorage, ToastAndroid } from 'react-native';
 import Classes from '../../screens/Classes';
 import HomeScreen from '../../screens/HomeScreen';
 import Notes from '../../screens/Notes';
@@ -23,6 +25,15 @@ const createTestProps = (props) => ({
 
     ...props
 });
+
+const mockPicker = class MockPicker extends React.Component {
+    static Item = props => React.createElement('Item', props, props.children);
+    static propTypes = { children: React.propTypes };
+  
+    render() {
+      return React.createElement('Picker', this.props, this.props.children);
+    }
+  };
 
 it(`renders correctly`, () => {
     const tree = renderer.create(<MonoText>Snapshot test!</MonoText>).toJSON();
@@ -53,12 +64,12 @@ describe("rendering", () => {
         }
         const subjectScreen = await renderer.create(<Subjects navigation={navigation} route={route} getSubjects={getSubjects} getLearningSystem={getLearningSystem} />);
         let tree = subjectScreen.toJSON();
-        subjectScreen.find('TouchableOpacity').simulate('click')
+        // subjectScreen.find('TouchableOpacity').simulate('click')
         subjectScreen.getInstance().getLearningSystem();
         subjectScreen.getInstance().getSubjects();
         subjectScreen.getInstance().render();
         subjectScreen.getInstance().componentDidMount();
-        subjectScreen.getInstance().navigateTo();
+        // subjectScreen.getInstance().navigateTo();
         
         subjectScreen.getInstance().setState({ learning_system: 'secondary' });
         subjectScreen.update();
@@ -79,12 +90,12 @@ describe("rendering", () => {
             }
         }
         const subjectScreen = await renderer.create(<Subjects navigation={navigation} route={route} />);
-        subjectScreen.find('TouchableOpacity').simulate('click')
+        // subjectScreen.find('TouchableOpacity').simulate('click')
         subjectScreen.getInstance().getLearningSystem();
         subjectScreen.getInstance().getSubjects();
         subjectScreen.getInstance().render();
         subjectScreen.getInstance().componentDidMount();
-        subjectScreen.getInstance().navigateTo();
+        // subjectScreen.getInstance().navigateTo();
         let tree = subjectScreen.toJSON();
 
         subjectScreen.getInstance().setState({ learning_system: 'primary' });
@@ -92,8 +103,28 @@ describe("rendering", () => {
         expect(subjectScreen).toMatchSnapshot();
 
     })
-    it(`Notes renders correctly`, async () => {
+    it(`Primary Notes renders correctly`, async () => {
+        jest.mock('@react-native-community/picker', () => {
+            const React = require('React')
+            const RealComponent = jest.requireActual('@react-native-community/picker')
+          
+            class Picker extends React.Component {
+              static Item = (props: { children: never }) => {
+                return React.createElement('Item', props, props.children)
+              }
+          
+              render () {
+                return React.createElement('Picker', this.props, this.props.children)
+              }
+            }
+          
+            Picker.propTypes = RealComponent.propTypes
+            return {
+              Picker
+            }
+          })
         const getSubjects = jest.fn();
+        // jest.mock('Picker', () => mockPicker);
         const getLearningSystem = jest.fn();
         let route = {
             params: {
@@ -103,12 +134,54 @@ describe("rendering", () => {
             }
         }
         const notes = await renderer.create(<Notes navigation={navigation} route={route} getSubjects={getSubjects} getLearningSystem={getLearningSystem} />);
-        let tree = notes.toJSON();
-        await notes.getInstance().getTopics();
-        await notes.getInstance().getSubtopics();
-        await notes.getInstance().getNotes();
-        console.log(tree);
+        
+        notes.getInstance().getTopics();
+        notes.getInstance().getSubtopics();
+        notes.getInstance().getNotes();
+        // console.log(tree);
+
+        
+        notes.getInstance().getTopics();
+        notes.getInstance().getSubtopics();
+        notes.getInstance().getNotes();
         expect(notes).toMatchSnapshot();
+    })
+    it(`Secondary Notes renders correctly`, async () => {
+        jest.mock('@react-native-community/picker', () => {
+            const React = require('React')
+            const RealComponent = jest.requireActual('@react-native-community/picker')
+          
+            class Picker extends React.Component {
+              static Item = (props: { children: never }) => {
+                return React.createElement('Item', props, props.children)
+              }
+          
+              render () {
+                return React.createElement('Picker', this.props, this.props.children)
+              }
+            }
+          
+            Picker.propTypes = RealComponent.propTypes
+            return {
+              Picker
+            }
+          })
+        const getSubjects = jest.fn();
+        // jest.mock('Picker', () => mockPicker);
+        const getLearningSystem = jest.fn();
+        let route = {
+            params: {
+                class: 1,
+                subject_id: 1,
+                learning_system: 'primary',
+            }
+        }
+        const notes = await renderer.create(<Notes navigation={navigation} route={route} getSubjects={getSubjects} getLearningSystem={getLearningSystem} />);
+        
+        notes.getInstance().getTopics();
+        notes.getInstance().getSubtopics();
+        notes.getInstance().getNotes();
+        // console.log(tree);
     })
     it(`Assignment renders correctly`, async () => {
         let route = {
@@ -118,9 +191,40 @@ describe("rendering", () => {
                 question_answered: true,
             }
         }
+        jest.mock(
+            'react-native/Libraries/Components/Touchable/TouchableOpacity.js',
+            () => {
+              const { TouchableHighlight } = require('react-native')
+              const MockTouchable = props => {
+                return <TouchableHighlight {...props} />
+              }
+              MockTouchable.displayName = 'TouchableOpacity'
+          
+              return MockTouchable
+            }
+          )
+        jest.mock('@react-native-community/picker', () => {
+            const React = require('React')
+            const RealComponent = jest.requireActual('@react-native-community/picker')
+          
+            class Picker extends React.Component {
+              static Item = (props: { children: never }) => {
+                return React.createElement('Item', props, props.children)
+              }
+          
+              render () {
+                return React.createElement('Picker', this.props, this.props.children)
+              }
+            }
+          
+            Picker.propTypes = RealComponent.propTypes
+            return {
+              Picker
+            }
+        })
         const assignment = await renderer.create(<Assignment navigation={navigation} route={route} />);
         const tree = assignment.toJSON();
-        assignment.root.findBy
+        // assignment.root.findBy
         // tree.find(TouchableOpacity).simulate('press');
         assignment.getInstance().render();
         assignment.getInstance().getQuestions(34);
@@ -188,6 +292,7 @@ it('tests API calls for syntax issues', async () => {
     DataService.retrieveNotes();
     DataService.retrieveSubjects();
     DataService.answerQuestion();
+    DataService.retrieveClasses();
     DataService.retrieveSubtopics();
     DataService.subscribeToPlan();
 })
